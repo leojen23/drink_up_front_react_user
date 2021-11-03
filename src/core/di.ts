@@ -1,15 +1,14 @@
 import { Container } from "inversify";
+import ServiceRepositoryImpl from "../application/ServiceRepositoryImpl";
 import UserRepositoryImpl from "../application/UserRepositoryImpl";
-import UserApiServiceimpl from "../data/remote/UserApiServiceImpl";
-import {IUserApiService} from "../data/remote/UserApiServiceImpl";
+import IServiceRepository from "../domain/adapters/repositories/IServiceRepository";
 import IUserRepository from "../domain/adapters/repositories/IUserRepository";
-import SignIn from "../domain/usecases/sign_in";
+
 
 const container = new Container();
 
 container.bind<IUserRepository>(IUserRepository).to(UserRepositoryImpl);
-container.bind<IUserApiService>(IUserApiService).to(UserApiServiceimpl);
+container.bind<IServiceRepository>(IServiceRepository).to(ServiceRepositoryImpl);
 
-container.bind<SignIn>(SignIn).toSelf();
 
 export default container;

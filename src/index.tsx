@@ -4,16 +4,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'inversify-react';
+import { Provider } from 'react-redux';
+import { Provider as Container }from 'inversify-react';
 import container from './core/di';
-
+import store from "./view/state/store";
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider container={container}>
-        <App />
-    </Provider>
+      <Container container={container}>
+        <Provider store = {store}>
+          <App />
+        </Provider>
+      </Container>
   </React.StrictMode>,
   document.getElementById('root')
 );
