@@ -18,7 +18,7 @@ const LoginPage = ({isAuthenticated}: any) => {
 
     const state = useSelector((state: State ) => state.user);
     const isAuth = useSelector((state: State ) => state.user.isAuthenticated);
-    console.log('login page ' +  isAuth )
+
    
 
     return (

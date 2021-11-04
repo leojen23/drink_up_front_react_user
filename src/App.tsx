@@ -18,8 +18,6 @@ import { ConnectedRouter,} from 'connected-react-router';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from './view/state';
 import { State } from './view/state/reducers';
-import { userInfo } from 'os';
-import { setIsAuthenticated } from './view/state/action-creators';
 import DashBoard from './view/pages/DashBoard';
 
 
@@ -27,18 +25,23 @@ import DashBoard from './view/pages/DashBoard';
 
 
 function App() {
-  //verifie si un token existe dans le local storage et s'il est toujours valide
+ 
   const serviceRepo = useInjection(IServiceRepository);
-  const authenticationStatus = serviceRepo.isAuthenticated();
 
+  //1 - Vérfiie le statut de connexion de l'utilisateur dans le state à l'ouverture de l'application
+  const authenticationStatus = serviceRepo.isAuthenticated();
+  console.log('authentifié au lancement application => ' + authenticationStatus)
+
+   //2 - Vérfie si un token exite dans le local storage du  navigateur et s'il est valide !
   serviceRepo.setup();
-  console.log('etat de la connexion à ouverture application ' + authenticationStatus);
+
+  // 3 - Mise à jour du state en fonction du statut de connexion
   const dispatch = useDispatch();
-  const { signIn , updateInput, clearInput , setIsAuthenticated} = bindActionCreators(actionCreators, dispatch);  
+  const { setIsAuthenticated} = bindActionCreators(actionCreators, dispatch);  
   setIsAuthenticated(authenticationStatus);
 
-const isAuthenticated: boolean = useSelector((state: State ) => state.user.isAuthenticated);
-console.log('state ouverture application ' + isAuthenticated)
+    const isAuthenticated: boolean = useSelector((state: State ) => state.user.isAuthenticated);
+console.log('Etat du status de connexion dans state => ' + isAuthenticated)
 
 
   return (  

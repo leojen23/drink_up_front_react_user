@@ -24,7 +24,7 @@ const DashBoard = () => {
       
       const user = useSelector((state: State) => state.user.user);
       const isAuth = useSelector((state: State) => state.user.isAuthenticated);
-      console.log('dashboard page ' +  isAuth )
+    //   console.log('dashboard page ' +  isAuth )
     //   console.log(user)
     
     return (
