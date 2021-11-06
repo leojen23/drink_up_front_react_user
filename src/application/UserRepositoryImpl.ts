@@ -1,11 +1,8 @@
 import IUserRepository from "../domain/adapters/repositories/IUserRepository";
 import User from "../domain/entities/user";
 import { injectable } from "inversify";
-import axios from "axios";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
-import jwtDecode from 'jwt-decode';
-import store from "../view/state/store";
-import {history} from '../view/state/store';
+import axios, { AxiosResponse } from "axios";
+
 
 
 @injectable()
@@ -17,6 +14,7 @@ export default class UserRepositoryImpl implements IUserRepository {
 
         public getAuthenticatedUserId = () :number | null =>  {
                 const token: string | null = window.localStorage.getItem('authToken');
+
                 if(token){
                         const data = this.parseJwt(token);
                         const userId: number = data.id;
@@ -30,14 +28,15 @@ export default class UserRepositoryImpl implements IUserRepository {
                 this.removeTokenFromLocalStorage();
         }
 
-        public async signIn (username : string, password: string){
+        public async signIn (username: string, password: string){
 
             const apiEndPoint: string = '/api/login_check'
-            const credentials: object = {username, password};
-
+            const credentials: any = {username, password};
             try {
-            const data: any = await axios.post<Response>(this.url + apiEndPoint, credentials).then(response => response.data);
-            const token: string = data.token
+                    //     console.log('ppl')
+                    const data: any = (await axios.post<AxiosResponse>(this.url + apiEndPoint, credentials)).data
+                    const token: string = data.token
+                    
             this.setAxiosToken(token);
             this.storeTokenInLocalStorage(token);
             } catch (error: any) {
@@ -45,11 +44,29 @@ export default class UserRepositoryImpl implements IUserRepository {
             }
 
         }
+
+
+        public  register = async ({email, password, gender, firstname, surname, isNotified}: registerFormData): Promise<void> => {
+             
+                const apiEndPoint: string = '/api/users'  
+                const userDetails:  registerFormData = {email, password, gender, firstname, surname, isNotified  };
+                // console.log(userDetails);
+                console.log(userDetails);
+                try {
+                // j'enregistre l'utilisateur 
+                    const data: any = (await axios.post(this.url + apiEndPoint, userDetails)).data
+                    
+        
+                } catch (error) {
+                        
+                }
+
+        }
         private storeTokenInLocalStorage (token: string):void {
             window.localStorage.setItem('authToken', token);
         }
         private removeTokenFromLocalStorage ():void {
-                console.log('removed from storage')
+                
                 window.localStorage.removeItem('authToken');
         }
         private setAxiosToken (token:string): void {
@@ -66,20 +83,32 @@ export default class UserRepositoryImpl implements IUserRepository {
                         return null;     
                 }
         }
-        public  getUserData = async (id:number | null): Promise<any> => {
+        public  getUserData = async (id:number | null): Promise<User | undefined> => {
 
                 const apiEndPoint: string = '/api/users/'+ id
 
                 try {
-                        const data: any= await axios.get<any>(this.url + apiEndPoint).then(response => response.data);
-                        const user: User = new User(data.id, data.gender, data.firstname, data.surname, data.is_notified);
+                        const data: any= (await axios.get<any>(this.url + apiEndPoint)).data
+                        const user: User | undefined = new User(data.id, data.gender, data.firstname, data.surname, data.is_notified);
                         
                         return user;
 
                 }catch(error){
                         
-                        console.log(error)
+                        
                 }
-                return null;
-        }      
+                
         }
+
+
+        
+}
+export interface registerFormData {
+        email: string,
+        password: string,
+        gender: string,
+        firstname: string,
+        surname: string,
+        isNotified: boolean
+        }
+      

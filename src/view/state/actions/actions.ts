@@ -15,6 +15,10 @@ interface SetIsAuthenticatedAction {
     type: ActionType.SET_IS_AUTHENTICATED,
     status: boolean,
 };
+interface ToggleIsNotifieddAction {
+    type: ActionType.TOGGLE_IS_NOTIFIED,
+    status: boolean,
+};
 interface UpdateInputAction {
     type: ActionType.UPDATE_INPUT,
     value: string,
@@ -23,7 +27,6 @@ interface UpdateInputAction {
 interface ClearInputAction {
     type: ActionType.CLEAR_INPUT,
     inputValue: string,
-    
 };
 interface getUserDataAction {
     type: ActionType.GET_USER_DATA,
@@ -31,4 +34,4 @@ interface getUserDataAction {
     
 };
 
-export type Action = SignInAction | SignOutAction | UpdateInputAction | ClearInputAction | getUserDataAction | SetIsAuthenticatedAction;
+export type Action = SignInAction | SignOutAction | UpdateInputAction | ClearInputAction | getUserDataAction | SetIsAuthenticatedAction | ToggleIsNotifieddAction;

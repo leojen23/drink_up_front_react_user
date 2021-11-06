@@ -18,7 +18,6 @@ const Navbar = () => {
 
     return(
 
-
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">Drink Up !</a>
@@ -32,7 +31,7 @@ const Navbar = () => {
                         <a className="nav-link" href="#">Nos Plantes</a>
                         </li>
                         <li className="nav-item">
-                        <a className="nav-link" href="#">Pricing</a>
+                        <a className="nav-link" href="#">Nous contacter</a>
                         </li>
                     </ul>
                     {isAuth && <>
