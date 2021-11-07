@@ -8,12 +8,15 @@ import {
     routerMiddleware
   }from 'connected-react-router';
 import userReducer from "./reducers/userReducer";
+import {reducer as formReducer} from 'redux-form';
+
 
 
 
 export const history = createBrowserHistory();
 const reducers =  combineReducers({
   router: connectRouter(history),
+  form: formReducer,
   user: userReducer,
   /* Add your reducers here */
 })

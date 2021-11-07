@@ -6,6 +6,8 @@ import IUserRepository from "../../../domain/adapters/repositories/IUserReposito
 import User from "../../../domain/entities/user";
 import { push, replace } from 'connected-react-router'
 import { report } from "process";
+import { registerFormData } from "../../../application/UserRepositoryImpl";
+import reportWebVitals from "../../../reportWebVitals";
 
 
 export const signIn = ( username: string, password: string, repo: IUserRepository) => {
@@ -15,67 +17,24 @@ export const signIn = ( username: string, password: string, repo: IUserRepositor
         dispatch(setIsAuthenticated(true));
         // console.log('ppl2')
         dispatch(push('/dashboard'));
+        // console.log('pppppol')
     }
 }
+
+// export const register = ({gender, firstname, surname, email, password, isNotified}: registerFormData, repo: IUserRepository) => {
+//     return async (dispatch: Dispatch) =>  {
+//         await repo.register({gender, firstname, surname, email, password, isNotified})
+//         repo.signIn(email, password)
+//         dispatch(setIsAuthenticated(true))
+//         dispatch(push('/dashboard'));
+//         console.log('ppl')
+//     }
+// }
+
 export const setIsAuthenticated = (status: boolean) => ({
     type: ActionType.SET_IS_AUTHENTICATED,
     status: status
 })
-
-
-export const toggleIsNotified = (initialStatus: string) => {
-   
-    console.log('valeur avant le changement ' + initialStatus)
-
-//     if(initialStatus === false){
-
-//         return (dispatch: Dispatch) => {
-//             dispatch({
-//                 type: ActionType.TOGGLE_IS_NOTIFIED,
-//                 status: true,
-//             })
-//         }
-//     // } 
-//     } 
-//     return (dispatch: Dispatch) => {
-//         dispatch({
-//             type: ActionType.TOGGLE_IS_NOTIFIED,
-//             status: false,
-//         })
-
-// }
-// } 
-} 
-
-    
-    // console.log('ppl')
-    //     return (dispatch: Dispatch) => {
-    //         dispatch({
-    //             type: ActionType.TOGGLE_IS_NOTIFIED,
-    //             status: false,
-    //         })
-    //     } 
-        
-        
-    
-
-    
-
-
-
-
-
-    // ({
-    //     type: ActionType.TOGGLE_IS_NOTIFIED,
-    //     status: status
-    // })
-
-
-
-    
-    
-
-
 
 
 export const signOut = (repo: IUserRepository) => {

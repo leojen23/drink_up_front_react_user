@@ -2,8 +2,7 @@ import IUserRepository from "../domain/adapters/repositories/IUserRepository";
 import User from "../domain/entities/user";
 import { injectable } from "inversify";
 import axios, { AxiosResponse } from "axios";
-
-
+import {requestBuilder} from "../core/utils/requestBuilder";
 
 @injectable()
 export default class UserRepositoryImpl implements IUserRepository {
@@ -29,12 +28,12 @@ export default class UserRepositoryImpl implements IUserRepository {
         }
 
         public async signIn (username: string, password: string){
-
-            const apiEndPoint: string = '/api/login_check'
+            
+            const requestUrl: string = requestBuilder("/api/login_check");
             const credentials: any = {username, password};
             try {
                     //     console.log('ppl')
-                    const data: any = (await axios.post<AxiosResponse>(this.url + apiEndPoint, credentials)).data
+                    const data: any = (await axios.post<AxiosResponse>(requestUrl, credentials)).data
                     const token: string = data.token
                     
             this.setAxiosToken(token);
@@ -51,12 +50,10 @@ export default class UserRepositoryImpl implements IUserRepository {
                 const apiEndPoint: string = '/api/users'  
                 const userDetails:  registerFormData = {email, password, gender, firstname, surname, isNotified  };
                 // console.log(userDetails);
-                console.log(userDetails);
+                // console.log(userDetails);
+                return;
                 try {
-                // j'enregistre l'utilisateur 
                     const data: any = (await axios.post(this.url + apiEndPoint, userDetails)).data
-                    
-        
                 } catch (error) {
                         
                 }
@@ -90,14 +87,12 @@ export default class UserRepositoryImpl implements IUserRepository {
                 try {
                         const data: any= (await axios.get<any>(this.url + apiEndPoint)).data
                         const user: User | undefined = new User(data.id, data.gender, data.firstname, data.surname, data.is_notified);
-                        
+                        console.log(user);
                         return user;
 
                 }catch(error){
-                        
-                        
+                             
                 }
-                
         }
 
 

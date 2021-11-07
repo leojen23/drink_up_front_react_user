@@ -7,6 +7,10 @@ interface SignInAction {
     username: string,
     password: string,
 };
+interface RegisterAction {
+    type: ActionType.REGISTER,
+
+};
 interface SignOutAction {
     type: ActionType.SIGNOUT,
     isAuthenticated: boolean,
@@ -34,4 +38,4 @@ interface getUserDataAction {
     
 };
 
-export type Action = SignInAction | SignOutAction | UpdateInputAction | ClearInputAction | getUserDataAction | SetIsAuthenticatedAction | ToggleIsNotifieddAction;
+export type Action = SignInAction | RegisterAction | SignOutAction | UpdateInputAction | ClearInputAction | getUserDataAction | SetIsAuthenticatedAction | ToggleIsNotifieddAction;

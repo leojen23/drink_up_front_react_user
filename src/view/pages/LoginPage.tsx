@@ -6,20 +6,25 @@ import { actionCreators, State } from '../state/index';
 import  { bindActionCreators } from 'redux';
 import IUserRepository from '../../domain/adapters/repositories/IUserRepository';
 import { registerFormData } from '../../application/UserRepositoryImpl';
+import LoginForm from '../components/User/LoginForm';
+import RegisterForm from '../components/User/RegisterForm';
 
 
 
-const LoginPage = () => {
+
+
+
+const LoginPage = (props) => {
     
     const userRepo = useInjection(IUserRepository);
 
     const dispatch = useDispatch();
-    const { signIn , updateInput, toggleIsNotified } = bindActionCreators(actionCreators, dispatch);
+    const { signIn , updateInput } = bindActionCreators(actionCreators, dispatch);
     
     const state = useSelector((state: State ) => state.user);
-    console.log('state initial' + state.credentials.isNotified);
+    // console.log('state initial' + state.credentials.isNotified);
     // const isAuth = useSelector((state: State ) => state.user.isAuthenticated);
-
+   
     return (
     
         <div className='bg-transparent p-5' style={{ 
@@ -35,34 +40,26 @@ const LoginPage = () => {
                     </div>
                 </div>
             </div>
-            
-           <div className='d-flex justify-content-between  bg-dark container opacity-75'>
 
-               <div className='login-form w-50 m-5'>
-                    <h2 className='text-light mb-5 fw-light'>Connectez-vous à votre compte</h2>
-                    <div className="text-light">
-                        <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-                            e.preventDefault()
-                            signIn(e.currentTarget.username.value, e.currentTarget.password.value, userRepo)}}> 
+           <div className=' position-relative container pt-5'>
+                <div className="position-absolute top-0 start-0 bottom-0 end-0 bg-dark  opacity-75 "></div>
 
-                            <div className="form-group">
-                                <label htmlFor="username" className="form-label mt-4 mr-4 float-start">Adresse E-mail</label>
-                                <input type="email" value={ state.credentials.username } onChange= {(e: React.FormEvent<HTMLInputElement>) => updateInput( e.currentTarget.value, e.currentTarget.name)} className="form-control" id="username" aria-describedby="emailHelp" placeholder="Entrez votre adresse email" name='username' />
-                            </div>
+                <div className=' position-relative d-flex justify-content-between  pt-5'>
+                    <LoginForm />
+                    <RegisterForm />
+                    
+                </div> 
+        </div>
+
+    //  </div>
+     );
+}
+
+export default LoginPage;
 
 
-                            <div className="form-group">
-                                <label htmlFor="password" className="form-label mt-4 float-start">Mot de passe</label>
-                                <input type="password" value={ state.credentials.password}  onChange= {(e: React.FormEvent<HTMLInputElement>) => updateInput(e.currentTarget.value,  e.currentTarget.name)} className="form-control" id="password" placeholder="Entrez votre mot de passe" name='password' />
-                            </div>
-                            
-                            <button type="submit" className="btn btn-success my-5">Connexion</button>
-                        </form>
-                    </div>
-                </div>
 
-               <div className='register-form w-50 m-5'>
-                    <h2 className='text-light mb-5 fw-light'>Créer un compte utilisateur</h2>
+                    {/*<h2 className='text-light mb-5 fw-light'>Créer un compte utilisateur</h2>
                     <div className="text-light">
                         <form onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
                             e.preventDefault();
@@ -128,14 +125,4 @@ const LoginPage = () => {
                             
                             <button type="submit" className="btn btn-success my-5">Connexion</button>
                         </form>
-                    </div>
-                </div>
-
-           </div>
-
-     </div>
-     );
-}
-
-export default LoginPage;
-
+                    </div>*/}
