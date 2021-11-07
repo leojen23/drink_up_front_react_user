@@ -50,8 +50,8 @@ export default class UserRepositoryImpl implements IUserRepository {
                 const apiEndPoint: string = '/api/users'  
                 const userDetails:  registerFormData = {email, password, gender, firstname, surname, isNotified  };
                 // console.log(userDetails);
-                // console.log(userDetails);
-                return;
+                console.log(userDetails);
+                
                 try {
                     const data: any = (await axios.post(this.url + apiEndPoint, userDetails)).data
                 } catch (error) {

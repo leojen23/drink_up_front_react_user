@@ -17,7 +17,6 @@ import { renderInputField, renderSelectField, renderSwitchField } from '../formF
         
         const submit = async (values) => {
             await userRepo.register({gender: values.gender, firstname: values.firstname, surname: values.surname, email:values.email, password: values.passwordReg, isNotified:values.isNotified});
-            return;
             signIn(values.email, values.passwordReg, userRepo)
         }
         
