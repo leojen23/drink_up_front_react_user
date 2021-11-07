@@ -16,7 +16,7 @@ export default class ServiceRepositoryImpl implements IServiceRepository {
         //Vérification existence et validité du token
         const token: string | null | undefined = window.localStorage.getItem('authToken');
 
-        if ((token != "undefined" && token != null )){
+        if ((token !== "undefined" && token !== null )){
         const {exp: expiration}: any = jwtDecode(token);
 
          if(expiration * 1000 > new Date().getTime()){
@@ -32,7 +32,7 @@ export default class ServiceRepositoryImpl implements IServiceRepository {
     public isAuthenticated = (): boolean => {
         const token: any = window.localStorage.getItem('authToken');
 
-        if (token != "undefined" && token != null ){
+        if (token !== "undefined" && token !== null ){
             const {exp: expiration}: any = jwtDecode(token);
             
             if(expiration * 1000 > new Date().getTime()){
@@ -40,6 +40,6 @@ export default class ServiceRepositoryImpl implements IServiceRepository {
             }
             return false
         }
-            return false;
+        return false;
     }
 }

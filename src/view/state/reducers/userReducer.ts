@@ -3,12 +3,7 @@ import { ActionType } from "../actions/actionType";
 
 const InitialState: any = {
     isAuthenticated: false,
-    credentials:  {
-        username:'',
-        password: ''
-    },
-    user: {},
-    inputValue: '',
+    user:{},
 }
 
 const userReducer = (state = InitialState , action: Action) => {
@@ -16,7 +11,6 @@ const userReducer = (state = InitialState , action: Action) => {
         case ActionType.SIGNIN:
             return {
                 ...state,
-                username: action.username
             }
         case ActionType.SIGNOUT:
             return {
@@ -33,17 +27,6 @@ const userReducer = (state = InitialState , action: Action) => {
                 ...state,
                 user: action.user
             }
-        case ActionType.UPDATE_INPUT:
-            const name = action.inputName
-            return {
-                ...state,
-                credentials: {[name]: action.value}
-             };
-        case ActionType.CLEAR_INPUT:
-            return {
-                ...state,
-                inputValue: action.inputValue
-             };
         default:
             return {
                 ...state
@@ -53,3 +36,35 @@ const userReducer = (state = InitialState , action: Action) => {
 }
 
 export default userReducer;
+
+  // case ActionType.TOGGLE_IS_NOTIFIED:
+        //     console.log('valeur transisme au state' + action.status)
+        //     return {
+        //         ...state,
+        //         credentials: {
+        //             ...state.credentials,
+        //             isNotified: action.status
+        //         }
+        //     }
+        // case ActionType.UPDATE_INPUT:
+        //     const name = action.inputName
+        //     return {
+        //         ...state,
+        //         credentials:{
+        //             ...state.credentials,
+        //         [name]: action.value
+
+        //         }
+
+        //      };
+        // case ActionType.CLEAR_INPUT:
+        //     return {
+        //         ...state,
+        //         // inputValue: action.inputValue
+        //      };
+
+        // case ActionType.REGISTER:
+        //     return {
+        //         ...state,
+                // username: action.username
+            // }
