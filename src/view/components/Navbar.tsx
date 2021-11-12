@@ -3,9 +3,10 @@ import { useInjection } from 'inversify-react';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import IUserRepository from '../../domain/adapters/repositories/IUserRepository';
 import { actionCreators } from '../state';
-import { State } from '../state/reducers';
+import { State } from '../state/store';
 
 
 const Navbar = () => {
@@ -13,8 +14,9 @@ const Navbar = () => {
     const userRepo = useInjection(IUserRepository);
 
     const dispatch = useDispatch();
-    const { signOut } = bindActionCreators(actionCreators, dispatch);
-    const isAuth: boolean = useSelector((state: State) => state.user.isAuthenticated);
+    const { logOut } = bindActionCreators(actionCreators, dispatch);
+    const isAuth: boolean = useSelector((state: State) => state.login.isAuthenticated);
+    console.log(isAuth)
 
     return(
 
@@ -37,7 +39,7 @@ const Navbar = () => {
                     {isAuth && <>
                     <ul className=' navbar-nav ml-auto'>
                         <li className="nav-item">
-                            <button onClick={() => signOut(userRepo)} className="btn btn-success">Deconnexion</button>
+                            <button onClick={() => logOut(userRepo)} className="btn btn-success">Deconnexion</button>
                         </li>
                     </ul>
                     </>}

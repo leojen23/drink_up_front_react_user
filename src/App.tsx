@@ -9,13 +9,21 @@ import Navbar from './view/components/Navbar';
 import { ConnectedRouter} from 'connected-react-router';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from './view/state';
-import { State } from './view/state/reducers';
+import { State } from './view/state/store';
 import DashBoard from './view/pages/DashBoard';
 import Create from './view/components/User/create';
+import LandingPage from './view/pages/LandingPage';
+
 
 
 
 function App() {
+  const myCarousel = document.getElementById('olivier')
+  console.log(myCarousel)
+
+// myCarousel.addEventListener('slide.bs.carousel', function () {
+//   // do something...
+// })
  
   const serviceRepo = useInjection(IServiceRepository);
 
@@ -29,10 +37,12 @@ function App() {
   // 3 - Mise à jour du state en fonction du statut de connexion
   const dispatch = useDispatch();
   const { setIsAuthenticated} = bindActionCreators(actionCreators, dispatch);  
-  setIsAuthenticated(authenticationStatus);
+  // const state = useSelector((state: State) => state);
 
-    const isAuthenticated: boolean = useSelector((state: State ) => state.user.isAuthenticated);
-console.log('Etat du status de connexion dans state => ' + isAuthenticated)
+  // console.log((state));
+  setIsAuthenticated(authenticationStatus);
+  const isAuthenticated: boolean = useSelector((state: State) => state.login.isAuthenticated);
+  console.log('Etat du status de connexion dans state => ' + isAuthenticated)
 
 
   return (  
@@ -41,7 +51,8 @@ console.log('Etat du status de connexion dans state => ' + isAuthenticated)
         <Navbar/>
         <main className="App">
           <Switch>
-            <Route path='/' exact component={LoginPage}/>
+            <Route path='/' exact component={LandingPage}/>
+            <Route path='/login' exact component={LoginPage}/>
             {/* {isAuthenticated} ? {userRoutes}  */}
             <Route path='/dashboard' render={props => {return isAuthenticated ?  <DashBoard /> : <Redirect to='/' />;}} />
             <Route path='/users/create' render={props => {return isAuthenticated ?  <Create /> : <Redirect to='/' />;}} />

@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { reduxForm, Field} from 'redux-form'
 import IUserRepository from '../../../domain/adapters/repositories/IUserRepository';
 import { actionCreators } from '../../state';
+import { loginFailed } from '../../state/action-creators';
 import { renderInputField } from '../formFields';
 
 
@@ -13,14 +14,13 @@ import { renderInputField } from '../formFields';
         
         const userRepo: IUserRepository = useInjection(IUserRepository);
         const dispatch = useDispatch();
-        const { signIn} = bindActionCreators(actionCreators, dispatch);
+        const { logIn} = bindActionCreators(actionCreators, dispatch);
 
 
         const submit = (values) => {
-            signIn(values.username, values.password, userRepo)
+            logIn({username: values.username, password: values.password}, userRepo)
         }
         
-    // console.log(props.onsubmit)
     return(
         // <div className='d-flex justify-content-center'>
 

@@ -18,13 +18,11 @@ const LoginPage = (props) => {
     
     const userRepo = useInjection(IUserRepository);
 
-    const dispatch = useDispatch();
-    const { signIn , updateInput } = bindActionCreators(actionCreators, dispatch);
-    
-    const state = useSelector((state: State ) => state.user);
+    // const dispatch = useDispatch();
+    // const { signIn, loginRequest, logIn } = bindActionCreators(actionCreators, dispatch);
+    const state = useSelector((state: State ) => state.login);
     // console.log('state initial' + state.credentials.isNotified);
     // const isAuth = useSelector((state: State ) => state.user.isAuthenticated);
-   
     return (
     
         <div className='bg-transparent p-5' style={{ 

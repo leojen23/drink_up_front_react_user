@@ -36,3 +36,54 @@
     transform: rotate(360deg);
   }
 }
+
+#dashboard .stats{
+  height:400px;
+}
+#dashboard .hero{
+  height:100vh;
+  /* background-color: lightgray;  */
+ 
+}
+#dashboard .stat-item{
+  height:220px;
+  width:220px;
+  background-color: cornsilk;
+}
+#dashboard .serre{
+  
+  background-color: cornsilk;
+}
+#landing-page{
+  height: 100vh;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.6)), url("https://images.pexels.com/photos/1470168/pexels-photo-1470168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-repeat: no-repeat;
+  background-position: cover;
+}
+
+.catalogue .img {
+  background-color:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.6))
+}
+/* .landing-overlay{
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+ 
+} */
+
+.container img {
+  filter: brightness(50%);
+}
+
+.main-title{
+  color:white;
+  font-size: 7rem;
+}
+
+.display{
+  height:300px
+}

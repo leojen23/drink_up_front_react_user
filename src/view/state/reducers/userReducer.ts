@@ -1,70 +1,49 @@
-import { Action } from "../actions/actions";
-import { ActionType } from "../actions/actionType";
+// import { AnyAction } from "redux";
+export{}
+// import { Action } from "../actions/actionInterfaces";
+// import { ActionType } from "../actions/actionType";
 
-const InitialState: any = {
-    isAuthenticated: false,
-    user:{},
-}
+// const InitialState = {
+//     isAuthenticated: false,
+//     user: {},
+// }
 
-const userReducer = (state = InitialState , action: Action) => {
-    switch (action.type) {
-        case ActionType.SIGNIN:
-            return {
-                ...state,
-            }
-        case ActionType.SIGNOUT:
-            return {
-                ...state,
-                isAuthenticated: action.isAuthenticated
-            }
-        case ActionType.SET_IS_AUTHENTICATED:
-            return {
-                ...state,
-                isAuthenticated: action.status
-            }
-        case ActionType.GET_USER_DATA:
-            return {
-                ...state,
-                user: action.user
-            }
-        default:
-            return {
-                ...state
-            };
-    }
 
-}
+// const userReducer = (state: any= InitialState , action: Action) => {
+//     switch (action.type) {
+//         case ActionType.SIGNIN:
+//             return {
+//                 ...state,
+//             }
+//         case ActionType.SIGNOUT:
+//             return {
+//                 ...state,
+//                 isAuthenticated: action.isAuthenticated
+//             }
+//         case ActionType.SET_IS_AUTHENTICATED:
+//             return {
+//                 ...state,
+//                 isAuthenticated: action.status
+//             }
+//         case ActionType.GET_USER_DATA:
+//             // console.log(action.user)
+//             return {
+//                 ...state,
+//                 user: action.user
+//             }
+//         case ActionType.SET_USER_DATA:
+//             // console.log(action.user)
+//             return {
+//                 ...state,
+//                 user: action.user
+//             }
+//         default:
+//             return {
+//                 ...state
+//             };
+//     }
 
-export default userReducer;
+// }
 
-  // case ActionType.TOGGLE_IS_NOTIFIED:
-        //     console.log('valeur transisme au state' + action.status)
-        //     return {
-        //         ...state,
-        //         credentials: {
-        //             ...state.credentials,
-        //             isNotified: action.status
-        //         }
-        //     }
-        // case ActionType.UPDATE_INPUT:
-        //     const name = action.inputName
-        //     return {
-        //         ...state,
-        //         credentials:{
-        //             ...state.credentials,
-        //         [name]: action.value
+// export default userReducer;
 
-        //         }
-
-        //      };
-        // case ActionType.CLEAR_INPUT:
-        //     return {
-        //         ...state,
-        //         // inputValue: action.inputValue
-        //      };
-
-        // case ActionType.REGISTER:
-        //     return {
-        //         ...state,
-                // username: action.username
-            // }

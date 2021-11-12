@@ -12,12 +12,11 @@ import { renderInputField, renderSelectField, renderSwitchField } from '../formF
         
         const userRepo: IUserRepository = useInjection(IUserRepository);
         const dispatch = useDispatch();
-        const { signIn } = bindActionCreators(actionCreators, dispatch);
+        const { logIn } = bindActionCreators(actionCreators, dispatch);
 
-        
         const submit = async (values) => {
             await userRepo.register({gender: values.gender, firstname: values.firstname, surname: values.surname, email:values.email, password: values.passwordReg, isNotified:values.isNotified});
-            signIn(values.email, values.passwordReg, userRepo)
+            logIn({username:values.email, password:values.passwordReg}, userRepo)
         }
         
     // console.log(props.onsubmit)
