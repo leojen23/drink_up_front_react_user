@@ -3,6 +3,7 @@ import User from "../domain/entities/user";
 import { injectable } from "inversify";
 import axios, { AxiosResponse } from "axios";
 import {requestBuilder} from "../core/utils/requestBuilder";
+import GardenerPlant, { IGardenerPlant } from "../domain/entities/GardenerPlant";
 
 @injectable()
 export default class UserRepositoryImpl implements IUserRepository {
@@ -21,27 +22,25 @@ export default class UserRepositoryImpl implements IUserRepository {
                 }
                 return null;
         }
-
         public signOut = () => {
                 this.unsetAxiosToken();
                 this.removeTokenFromLocalStorage();
         }
-
         public async signIn (username: string, password: string){
             
             const requestUrl: string = requestBuilder("/api/login_check");
             const credentials: any = {username, password};
             try {
-                    //     console.log('ppl')
-                    const data: any = (await axios.post<AxiosResponse>(requestUrl, credentials)).data
-                    const token: string = data.token
+                   
+                const data: any = (await axios.post<AxiosResponse>(requestUrl, credentials)).data
+                const token: string = data.token
                     
             this.setAxiosToken(token);
             this.storeTokenInLocalStorage(token);
-            } catch (error: any) {
-                console.log('there was an error');  
-            }
 
+            } catch (error: any) {
+                return  alert (error)
+            }
         }
 
 
@@ -50,12 +49,12 @@ export default class UserRepositoryImpl implements IUserRepository {
                 const apiEndPoint: string = '/api/users'  
                 const userDetails:  registerFormData = {email, password, gender, firstname, surname, isNotified  };
                 // console.log(userDetails);
-                console.log(userDetails);
+                // console.log(userDetails);
                 
                 try {
                     const data: any = (await axios.post(this.url + apiEndPoint, userDetails)).data
                 } catch (error) {
-                        
+                        return  alert (error)
                 }
 
         }
@@ -82,20 +81,25 @@ export default class UserRepositoryImpl implements IUserRepository {
         }
         public  getUserData = async (id:number | null): Promise<User | undefined> => {
 
-                const apiEndPoint: string = '/api/users/'+ id
+                const requestUrl: string = requestBuilder('/api/users/'+ id)
 
                 try {
-                        const data: any= (await axios.get<any>(this.url + apiEndPoint)).data
-                        const user: User | undefined = new User(data.id, data.gender, data.firstname, data.surname, data.is_notified);
-                        console.log(user);
+                        const data: any= (await axios.get<any>(requestUrl)).data;
+                        const gardenerPlantsData: IGardenerPlant[] = data.gardenerPlants;
+                        const gardenerPlants: GardenerPlant [] = gardenerPlantsData.map(function(gardenerPlant){
+                                
+                                return new GardenerPlant(gardenerPlant.id, gardenerPlant.nickname, gardenerPlant.sunlight, gardenerPlant.size, gardenerPlant.season, gardenerPlant.topography,gardenerPlant.location, gardenerPlant['plant'].frequency, gardenerPlant['plant'].image)
+                        })
+
+
+                        const user: User | undefined = new User(data.id, data.gender, data.firstname, data.surname, data.is_notified, gardenerPlants, data.totalNumberOfGardenerPlants);
+                       
                         return user;
 
                 }catch(error){
                              
                 }
         }
-
-
         
 }
 export interface registerFormData {
@@ -106,4 +110,5 @@ export interface registerFormData {
         surname: string,
         isNotified: boolean
         }
+
       
