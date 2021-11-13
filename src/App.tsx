@@ -1,5 +1,5 @@
 import './App.css';
-import LoginPage from './view/pages/LoginPage';
+import LoginPage from './view/pages/RegisterPage';
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import {history} from './view/state/store';
@@ -14,6 +14,7 @@ import DashBoard from './view/pages/DashBoard';
 import Create from './view/components/User/create';
 import LandingPage from './view/pages/LandingPage';
 import Footer from './view/components/footer';
+import RegisterPage from './view/pages/RegisterPage';
 
 
 
@@ -53,7 +54,8 @@ function App() {
         <main className="App">
           <Switch>
             <Route path='/' exact component={LandingPage}/>
-            <Route path='/login' exact component={LoginPage}/>
+            <Route path='/register' exact component={RegisterPage}/>
+            {/* <Route path='/login' exact component={LoginPage}/> */}
             {/* {isAuthenticated} ? {userRoutes}  */}
             <Route path='/dashboard' render={props => {return isAuthenticated ?  <DashBoard /> : <Redirect to='/' />;}} />
             <Route path='/users/create' render={props => {return isAuthenticated ?  <Create /> : <Redirect to='/' />;}} />

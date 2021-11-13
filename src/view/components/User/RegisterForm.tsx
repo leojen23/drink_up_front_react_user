@@ -5,6 +5,7 @@ import { reduxForm, Field} from 'redux-form'
 import IUserRepository from '../../../domain/adapters/repositories/IUserRepository';
 import { actionCreators } from '../../state';
 import { renderInputField, renderSelectField, renderSwitchField } from '../formFields';
+import { BsPersonCircle } from "react-icons/bs";
 
 
     
@@ -21,8 +22,9 @@ import { renderInputField, renderSelectField, renderSwitchField } from '../formF
         
     // console.log(props.onsubmit)
     return(
-        <div className='register-form mx-5 w-50'>
-            <h2 className='text-light mb-5 fw-light '>Créer un compte utilisateur</h2>
+        <div className='register-form '>
+            <h2 className='text-light mb-5 fw-normal '>Créer un compte utilisateur</h2>
+            <span className="text-light fw-normal"><BsPersonCircle size={60} /></span>
             <form onSubmit={handleSubmit(submit)}>
                 <div className="form-group">
                     <Field name='gender' component={renderSelectField} label='Civilité'>

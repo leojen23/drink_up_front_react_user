@@ -1,7 +1,7 @@
 
 
 import { useInjection } from 'inversify-react';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel'
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,12 +13,14 @@ import { BsFlower2 } from "react-icons/bs";
 import { BsClipboardData } from "react-icons/bs";
 
 import { FaPagelines } from "react-icons/fa";
+import Button from 'react-bootstrap/Button'
+import MyVerticallyCenteredModal from '../components/plant/showPlantModal';
 
 
 
 const LandingPage = (props) => { 
 
-    
+    const [modalShow, setModalShow] = useState(false);
     // const plants: Plant[] = await ==plantRepo.getAllPlants();
     const plantRepo = useInjection(IPlantRepository);
 
@@ -53,62 +55,68 @@ const LandingPage = (props) => {
     return(
         <div id="landing-page" className="landing-page">
 
-
             <section className="d-flex justify-content-center align-items-center hero " >
                 <div className="text-white ">
                     <h1 className="main-title mb-4">DRINK UP !</h1>
-
-                    <p className="lead ">Vos plantes vous mennent la vie dure ? Drink up est l'application qu'il vous pour que vos plantes ne manquent plus jamais d'eau. Rejoignez-vous pour <span className="fw-bold">une expérience unique</span>une expérience unique.... enfin presque !</p>
+                    <p className="lead ">Vos plantes vous mennent la vie dure ? <br/> 
+                    <span className="fw-bold text-success"> Drink up</span> est l'application qu'il vous pour que vos plantes ne manquent plus jamais d'eau. <br/> 
+                    Rejoignez-vous pour <span className="fw-bold text-success fs-lg">une expérience unique</span>.... enfin presque !</p>
                     <div className="py-5 d-flex justify-content-center gap-5">
-
                         <a href="#" className="btn fw-bold border-white btn-success rounded ">Découvrir !</a>
-
-                        <a href="#" className="btn fw-bold  btn-outline-light rounded">Créer un compte</a>
-                        </div>
-                   
+                        <a href="/register" className="btn fw-bold  btn-outline-light rounded">Créer un compte</a>
+                    </div>
                 </div>
             </section>
 
-            <section className="display bg-dark py-4 px-4">
-                <div className="row">
+            <section className="presentation-login section-padding bg-dark px-4 mw-50" id="presentation-login">
+                <div className="row d-flex justify-content-center ">
+
                     <div className="catalogue col-8 ">
-                    <div className="d-flex justify-content-between py-4">
-                        <h2 className="text-start text-light fw-light mr-5">Notre catalogue de plantes</h2>
-                        <a href="#" className="btn btn-sm  btn-outline-success rounded">Nos plantes</a>
-                    </div>
-                    <Carousel>
-                    {plants.map((plant) => {
-                    return <Carousel.Item>
-                                <img
-                                className="rounded"
-                                src={plant.image}
-                                />
-                                <Carousel.Caption>
-                                    <div className ="d-flex flex-column align-items-stretch justify-content-between">
-                                        <div>
-                                            <h3 className="py-5 display-3 fw-bold text-white">{plant.name}</h3>
-                                            <p className="carousel-description mb-5 fw-medium fs-4 ">{plant.description}</p>
-                                        </div>
-                                        <div className="">
-                                            <a href="#" className="btn fw-bold border-white btn-success rounded">Consulter</a>
-                                        </div>
-                                    </div> 
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                    })}
-                            
+                        <div className="d-flex justify-content-between py-4">
+                            <h2 className="text-start text-light fw-light mr-5">Notre catalogue de plantes</h2>
+                            <a href="#" className="btn btn-sm  btn-outline-success rounded">Nos plantes</a>
+                        </div>
+                        <Carousel>
+                        {plants.map((plant) => {
+                        return <Carousel.Item>
+                                    <img
+                                    className="rounded"
+                                    src={plant.image}
+                                    />
+                                    <Carousel.Caption>
+                                        <div className ="d-flex flex-column align-items-stretch justify-content-between">
+                                            <div>
+                                                <h3 className="py-5 display-3 fw-bold text-white">{plant.name}</h3>
+                                                <p className="carousel-description mb-5 fw-medium fs-4 ">{plant.description}</p>
+                                            </div>
+                                            <div className="">
+                                                <Button variant="primary" className="btn fw-bold border-white btn-success rounded"  onClick={() => setModalShow(true)}>Consulter</Button>
+
+                                                {/* Modal de presentation de la plante  */}
+                                                < MyVerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)} plant={plant}/>
+                                            </div>
+                                        </div> 
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                })}
                         </Carousel>
-                    </div>
+                        
+                                               
+                        </div>
                     <div className="login-form col-4 d-flex align-items-end">
                         <LoginForm />
-
-
                     </div>
             
                 </div>
 
+            
+
             </section>
 
+
+
+          
+  
 
         <section className="easy-steps py-5 px-4">
             

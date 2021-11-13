@@ -24,8 +24,8 @@ import { renderInputField } from '../formFields';
     return(
         // <div className='d-flex justify-content-center'>
 
-            <div className='login-form mx-5 '>
-                <h2 className='text-light mb-5 fw-light'>Accès à votre serre virtuelle</h2>
+            <div className='login-form mx-5 mt-5 ' id="login-form">
+                <h2 className='text-dark bg-light rounded mb-2 fw-light border border-light p-3'>Accès à votre serre virtuelle</h2>
                 <form onSubmit={handleSubmit(submit)}>
                     <div className="form-group">
                         <Field name='username' component={renderInputField} label='Adresse e-mail' type='email' />

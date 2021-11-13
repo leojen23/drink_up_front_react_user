@@ -51,7 +51,6 @@
   background-color: cornsilk;
 }
 #dashboard .serre{
-  
   background-color: cornsilk;
 }
 
@@ -60,7 +59,7 @@
 
 
 
-.hero {
+#landing-page .hero {
   height: 100vh;
   background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.7)), url("https://images.pexels.com/photos/1470168/pexels-photo-1470168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-repeat: no-repeat;
@@ -68,18 +67,22 @@
   background-size: cover;
 }
 .hero .lead {
-  margin-left:250px;
-  margin-right:250px;
+  margin-left:200px;
+  margin-right:200px;
   margin-bottom:15px
 }
-
+.section-padding{
+  padding-top:50px;
+  padding-bottom:35px;
+}
 .easy-steps{
   margin-top:25px;
   margin-bottom:35px;
 }
 
-.display{
+#landing-page .presentation-login .row{
   height: auto;
+  
 }
 .catalogue{
   height: 600px;
@@ -111,5 +114,14 @@
 
 .main-footer {
   background-color:#e3e3e3
+}
+
+
+#register-page{
+  background-image: url("https://bergamotte.imgix.net/z049fzgxm50nzio6q6ri06wzq7op?ixlib=rails-4.2.0&auto=format%2Ccompress&fit=crop&q=65&ar=1%3A1&w=560");
+  background-repeat:no-repeat;
+  background-size: cover;
+  width: 100%;
+
 }
 
