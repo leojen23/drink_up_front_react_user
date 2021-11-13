@@ -1,4 +1,5 @@
 import { FormEvent } from "react";
+import { IPlant } from "../../../domain/entities/Plant";
 import User from "../../../domain/entities/user";
 import { LoginData } from "../action-creators";
 
@@ -39,6 +40,16 @@ interface ToggleIsNotifieddAction {
     type: ActionType.TOGGLE_IS_NOTIFIED,
     status: boolean,
 };
+
+
+
+
+// PLANT ACTION INTERFACES -----------------------------------------------/
+
+interface GetAllPlantsAction {
+    type: ActionType.SET_PLANTS
+    plants: IPlant[];
+}
 // interface UpdateInputAction {
 //     type: ActionType.UPDATE_INPUT,
 //     value: string,
@@ -67,4 +78,5 @@ SignOutAction |
 getUserDataAction | 
 SetIsAuthenticatedAction | 
 settUserDataAction | 
-ToggleIsNotifieddAction;
+ToggleIsNotifieddAction |
+GetAllPlantsAction;

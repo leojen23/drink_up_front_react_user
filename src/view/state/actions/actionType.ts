@@ -1,4 +1,7 @@
 export enum ActionType {
+
+
+    //LOGIN / USER ACTION TYPES ---------------------------------
     LOGIN_REQUEST = 'LOGIN_REQUEST',
     LOGIN_SUCCESS = "LOGIN_SUCCESS",
     LOGIN_FAILED = "LOGIN_FAILED",
@@ -8,6 +11,10 @@ export enum ActionType {
     SET_IS_AUTHENTICATED = 'SET_IS_AUTHENTICATED',
     GET_USER_DATA = 'GET_USER_DATA',
     SET_USER_DATA = 'SET_USER_DATA',
+
+    //PLANT ACTION TYPES ---------------------------------
+
+    SET_PLANTS = 'SET_PLANTS',
 
 
 

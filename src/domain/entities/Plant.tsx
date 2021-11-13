@@ -1,4 +1,19 @@
 
+
+
+export interface IPlant {
+    id: number;
+    name: string;
+    image: string;
+    description: string;
+    exposition: string;
+    care: string;
+    toxicity: string;
+    frequency: boolean;
+    type: string;
+}
+
+
 export default class Plant {
 
     id: number;

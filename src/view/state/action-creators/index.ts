@@ -4,6 +4,8 @@ import IUserRepository from "../../../domain/adapters/repositories/IUserReposito
 import User from "../../../domain/entities/user";
 import { push, replace } from 'connected-react-router'
 import { Action } from "../actions/actionInterfaces";
+import { IPlant } from "../../../domain/entities/Plant";
+import IPlantRepository from "../../../domain/adapters/repositories/IPlantRepository";
 
 
 export interface LoginData {
@@ -13,8 +15,6 @@ export interface LoginData {
 
   
 export const logIn = ({username, password}, repo: IUserRepository) => {
-      
-    
     return async (dispatch: Dispatch) =>  {
         dispatch(loginRequest({username, password}));
         await repo.signIn(username, password);
@@ -74,65 +74,16 @@ export const signOut = () =>  ({
 
 
 
+// PLANTS ACTIONS ------------------------------------------------------
 
-// export const signIn = ( username: string, password: string, repo: IUserRepository) => {
-//     return async (dispatch: Dispatch) =>  {
-//         await repo.signIn(username, password);
-//         const userId: number | null = repo.getAuthenticatedUserId();
-//         const user: User|undefined = await repo.getUserData(userId);
-//         console.log(user);
-//         if (user){
-//             dispatch(setUserData(user));
-//             dispatch(setIsAuthenticated(true));
-//             // dispatch(push('/dashboard'));
-//         }
-//     }
-// }
+export const getPlants = (repo: IPlantRepository) => {
+    return async (dispatch: Dispatch) =>  {
+        const plants: IPlant[] | undefined = await  repo.getAllPlants();
+        dispatch(setPlants(plants));
+    }
+}
 
-
-
-
-
-
-// export const getUserData = (id: number | null , repo: IUserRepository) =>  {
-//     return async (dispatch: Dispatch) => {
-//         const user: User|undefined = await repo.getUserData(id)
-//         if (user){
-//             dispatch({
-//                 type: ActionType.GET_USER_DATA,
-//                 user: user
-//             })
-//         }
-//     }
-// }
-
-
-
-
-// export const register = ({gender, firstname, surname, email, password, isNotified}: registerFormData, repo: IUserRepository) => {
-//     return async (dispatch: Dispatch) =>  {
-//         await repo.register({gender, firstname, surname, email, password, isNotified})
-//         repo.signIn(email, password)
-//         dispatch(setIsAuthenticated(true))
-//         dispatch(push('/dashboard'));
-//         console.log('ppl')
-//     }
-// }
-
-
-
-// export const updateInput = (value: string, inputName: string) =>  {
-//     return (dispatch: Dispatch) => {
-//         dispatch({
-//             type: ActionType.UPDATE_INPUT,
-//             value: value,
-//             inputName: inputName
-//         })
-//     }
-// }
-// export const clearInput = () =>  ({
-//     type: ActionType.CLEAR_INPUT,
-//     inputValue: ''
-// })
-
-
+export const setPlants = (plants: IPlant[] | undefined) =>  ({
+    type: ActionType.SET_PLANTS,
+    plants: plants
+})

@@ -1,11 +1,19 @@
 
+
 import { useInjection } from 'inversify-react';
 import { useCallback, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel'
-import PlantRepositoryImpl from '../../application/PlantRepositoryImpl';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import IPlantRepository from '../../domain/adapters/repositories/IPlantRepository';
-import Plant from '../../domain/entities/Plant';
 import LoginForm from '../components/User/LoginForm'
+import { actionCreators, State } from '../state';
+import { BsPersonCircle } from "react-icons/bs";
+import { BsFlower2 } from "react-icons/bs";
+import { BsClipboardData } from "react-icons/bs";
+
+import { FaPagelines } from "react-icons/fa";
+
 
 
 const LandingPage = (props) => { 
@@ -13,10 +21,19 @@ const LandingPage = (props) => {
     
     // const plants: Plant[] = await ==plantRepo.getAllPlants();
     const plantRepo = useInjection(IPlantRepository);
+
+    const dispatch = useDispatch();
+    const { getPlants} = bindActionCreators(actionCreators, dispatch);
+    const plants = useSelector((state: State ) => state.plant.plants);
+    // console.log('state initial' + state.credentials.isNotified);
+    // const isAuth = useSelector((state: State ) => state.user.isAuthenticated);
+
+
     const fetchPlants = useCallback( async () => {
-            const plants: Plant[] | undefined = await plantRepo.getAllPlants();
+            // const plants: Plant[] | undefined = await plantRepo.getAllPlants();
+            getPlants(plantRepo);
             // console.log(plants)
-            return plants;
+            // return plants;
     }, []);
 
     
@@ -30,66 +47,126 @@ const LandingPage = (props) => {
     }, [fetchPlants]);
 
 
- 
-    const getthePlants = async () => {
-        const plants: Plant[] | undefined = await plantRepo.getAllPlants();
-        return plants
-    }
-    const plants = fetchPlants();
+    // const plants = fetchPlants();
     console.log (plants)
 
     return(
-        <div>
-        <section className="d-flex justify-content-center align-items-center " id="landing-page">
-            <div className="w-50 text-white ">
-                <h1 className="main-title">DRINK UP !</h1>
-                <p className="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-                <p className="lead">
-                    <div className="py-5 d-flex justify-content-evenly">
-                     <a href="#" className="btn fw-bold border-white btn-success rounded ">Découvrir !</a>
-                     <a href="#" className="btn fw-bold border-white btn-success rounded">Créer un compte</a>
+        <div id="landing-page" className="landing-page">
+
+
+            <section className="d-flex justify-content-center align-items-center hero " >
+                <div className="text-white ">
+                    <h1 className="main-title mb-4">DRINK UP !</h1>
+
+                    <p className="lead ">Vos plantes vous mennent la vie dure ? Drink up est l'application qu'il vous pour que vos plantes ne manquent plus jamais d'eau. Rejoignez-vous pour <span className="fw-bold">une expérience unique</span>une expérience unique.... enfin presque !</p>
+                    <div className="py-5 d-flex justify-content-center gap-5">
+
+                        <a href="#" className="btn fw-bold border-white btn-success rounded ">Découvrir !</a>
+
+                        <a href="#" className="btn fw-bold  btn-outline-light rounded">Créer un compte</a>
+                        </div>
+                   
+                </div>
+            </section>
+
+            <section className="display bg-dark py-4 px-4">
+                <div className="row">
+                    <div className="catalogue col-8 ">
+                    <div className="d-flex justify-content-between py-4">
+                        <h2 className="text-start text-light fw-light mr-5">Notre catalogue de plantes</h2>
+                        <a href="#" className="btn btn-sm  btn-outline-success rounded">Nos plantes</a>
                     </div>
-                </p>
+                    <Carousel>
+                    {plants.map((plant) => {
+                    return <Carousel.Item>
+                                <img
+                                className="rounded"
+                                src={plant.image}
+                                />
+                                <Carousel.Caption>
+                                    <div className ="d-flex flex-column align-items-stretch justify-content-between">
+                                        <div>
+                                            <h3 className="py-5 display-3 fw-bold text-white">{plant.name}</h3>
+                                            <p className="carousel-description mb-5 fw-medium fs-4 ">{plant.description}</p>
+                                        </div>
+                                        <div className="">
+                                            <a href="#" className="btn fw-bold border-white btn-success rounded">Consulter</a>
+                                        </div>
+                                    </div> 
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                    })}
+                            
+                        </Carousel>
+                    </div>
+                    <div className="login-form col-4 d-flex align-items-end">
+                        <LoginForm />
+
+
+                    </div>
+            
+                </div>
+
+            </section>
+
+
+        <section className="easy-steps py-5 px-4">
+            
+            <div className="row ">
+                <div className="col-12 h-auto">
+                    <div className="d-flex justify-content-center gap-3 align-items-center pb-5">
+                        <h2 className="fw-normal">Créer votre serre virtuelle</h2>
+                        <span className="fw-bold text-success py-2"><FaPagelines size={45} />...en toute simplicité !</span>
+                    </div>
+                    <a href="#" className="btn fw-bold  btn-outline-success rounded mb-5">Je crée ma serre virtuelle</a>
+                </div>
             </div>
-        </section>
 
-        <section className="display">
-            <div className="row">
-                <div className="catalogue col-8 bg-success">
 
-               
-                 <Carousel>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src="https://images.pexels.com/photos/776656/pexels-photo-776656.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                            alt="First slide"
-                            />
-                            <Carousel.Caption>
-                                <div className ="py-5">
-
-                            <h3 className="py-2">First slide label</h3>
-                            <p className="mb-5">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            <a href="#" className="btn fw-bold border-white btn-success rounded">Consulter</a>
-                                </div>
-                                    
-                            </Carousel.Caption>
-                        </Carousel.Item>
+            <div className="row procedure-cards py-2 ">
                 
-                        
-                    </Carousel>
+                <div className="col-4 d-flex justify-content-center">
+                    <div className=" card rounded shadow" style={{maxWidth: "20rem"}}>
+                        <div className="card-header bg-success fw-bold text-light py-2"><BsPersonCircle size={35} /></div>
+                        <div className="card-body">
+                    
+                            <h4 className="card-title">Je créer mon compte</h4>
+                            <p className="card-text">La sécurité et la confidentialité de vos données sont notre priorité.<br/>
+                            <a className="link-success" href="#" target="_blank" rel="noopener noreferrer">Politique de confidentialité</a>
+                            
+                           </p>
+                        </div>
+                    </div>
                 </div>
-                <div className="login-form col-4 b">
-
-                    <LoginForm />
-
-
+                <div className="col-4 d-flex justify-content-center">
+                    <div className=" card rounded shadow" style={{maxWidth: "20rem"}}>
+                        <div className="card-header bg-success fw-bold text-light py-2"><BsFlower2 size={35} /></div>
+                        <div className="card-body">
+                            <h4 className="card-title">J'ajoute une plante</h4>
+                            <p className="card-text">Vous pouvez ajouter facilement des plantes dans votre serre virtuelle en quelques clicks!</p>
+                        </div>
+                    </div>
                 </div>
-           
+                <div className="col-4 d-flex justify-content-center">
+                    <div className=" card rounded shadow" style={{maxWidth: "20rem"}}>
+                        <div className="card-header bg-success fw-bold text-light py-2"><BsClipboardData size={35} /></div>
+                        <div className="card-body">
+                            <h4 className="card-title">Je gère mes plantes</h4>
+                            <p className="card-text">Grâce à votre tableau de board vous pouvez facilement gérer les plantes de votre serre virtuelle</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+                {/* </div> */}
+                 
+                    {/* <div className="col-4">
+                        <img className="w-75" src="https://images.unsplash.com/photo-1566664981274-ef2008590fe5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="image d'une serre de jardin" />
+                    </div> */}
+                {/* </div> */}
 
         </section>
         
+
         </div>
     )
 }

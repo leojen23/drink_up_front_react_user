@@ -9,6 +9,7 @@ import {
 // import userReducer from "./reducers/userReducer";
 import {reducer as formReducer} from 'redux-form';
 import loginReducer from "./reducers/loginReducer";
+import plantReducer from "./reducers/plantReducer";
 
 
 
@@ -18,7 +19,8 @@ const reducers =  combineReducers({
   router: connectRouter(history),
   form: formReducer,
   // user: userReducer,
-  login: loginReducer
+  login: loginReducer,
+  plant: plantReducer
   /* Add your reducers here */
 })
 const store = createStore(

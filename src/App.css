@@ -54,29 +54,53 @@
   
   background-color: cornsilk;
 }
-#landing-page{
+
+
+
+
+
+
+.hero {
   height: 100vh;
-  background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.6)), url("https://images.pexels.com/photos/1470168/pexels-photo-1470168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.7)), url("https://images.pexels.com/photos/1470168/pexels-photo-1470168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-repeat: no-repeat;
-  background-position: cover;
+  background-position:center;
+  background-size: cover;
+}
+.hero .lead {
+  margin-left:250px;
+  margin-right:250px;
+  margin-bottom:15px
 }
 
-.catalogue .img {
-  background-color:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.6))
+.easy-steps{
+  margin-top:25px;
+  margin-bottom:35px;
 }
-/* .landing-overlay{
-  position: absolute;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
- 
-} */
 
-.container img {
-  filter: brightness(50%);
+.display{
+  height: auto;
+}
+.catalogue{
+  height: 600px;
+}
+.catalogue img{
+    object-fit:cover;
+    width: 100%;
+    height: 500px;
+}
+.carousel-caption{
+  width:100%;
+  height:100%;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color:rgba(0,0,0,0.4);
+}
+
+.carousel-description{
+  padding-left: 100px;
+  padding-right: 100px 
 }
 
 .main-title{
@@ -84,6 +108,8 @@
   font-size: 7rem;
 }
 
-.display{
-  height:300px
+
+.main-footer {
+  background-color:#e3e3e3
 }
+
