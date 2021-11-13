@@ -13,6 +13,7 @@ import { State } from './view/state/store';
 import DashBoard from './view/pages/DashBoard';
 import Create from './view/components/User/create';
 import LandingPage from './view/pages/LandingPage';
+import Footer from './view/components/footer';
 
 
 
@@ -58,6 +59,7 @@ function App() {
             <Route path='/users/create' render={props => {return isAuthenticated ?  <Create /> : <Redirect to='/' />;}} />
           </Switch>
         </main>
+        <Footer/>
       </ConnectedRouter>
     
   );

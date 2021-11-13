@@ -24,8 +24,8 @@ import { renderInputField } from '../formFields';
     return(
         // <div className='d-flex justify-content-center'>
 
-            <div className='login-form mx-5 w-50'>
-                <h2 className='text-light mb-5 fw-light'>Connectez-vous à votre compte</h2>
+            <div className='login-form mx-5 '>
+                <h2 className='text-light mb-5 fw-light'>Accès à votre serre virtuelle</h2>
                 <form onSubmit={handleSubmit(submit)}>
                     <div className="form-group">
                         <Field name='username' component={renderInputField} label='Adresse e-mail' type='email' />
@@ -33,7 +33,10 @@ import { renderInputField } from '../formFields';
                     <div className="form-group">
                         <Field name='password' component={renderInputField} label='Mot de passe' type='password' />
                     </div>
-                    <button type="submit" className="btn btn-success my-5 rounded">Connexion</button>
+                    <div className="py-2 d-flex justify-content-start">
+                        <a href="#"  className="text-white"><small>Mot de passe oublié ?</small></a>
+                    </div>
+                    <button type="submit" className="btn btn-outline-light my-5 rounded">Connexion</button>
                 </form>
             </div>
         // </div>

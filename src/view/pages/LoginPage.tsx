@@ -43,13 +43,13 @@ const LoginPage = (props) => {
                 <div className="position-absolute top-0 start-0 bottom-0 end-0 bg-dark  opacity-75 "></div>
 
                 <div className=' position-relative d-flex justify-content-between  pt-5'>
-                    <LoginForm />
+                    {/* <LoginForm /> */}
                     <RegisterForm />
                     
                 </div> 
         </div>
 
-    //  </div>
+     </div>
      );
 }
 
