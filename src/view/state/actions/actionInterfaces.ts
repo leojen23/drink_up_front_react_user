@@ -18,10 +18,6 @@ interface LoginFailedAction {
         type: ActionType.LOGIN_FAILED,
         error: string
 }
-
-
-
-
 interface SignInAction {
     type: ActionType.SIGNIN,
     username: string,

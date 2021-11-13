@@ -36,10 +36,17 @@ const Navbar = () => {
                         <a className="nav-link" href="#">Nous contacter</a>
                         </li>
                     </ul>
+                    {!isAuth && <>
+                    <ul className=' navbar-nav ml-auto'>
+                        <li className="nav-item">
+                            <button onClick={() => {}} className="btn btn-success">Connexion</button>
+                        </li>
+                    </ul>
+                    </>}
                     {isAuth && <>
                     <ul className=' navbar-nav ml-auto'>
                         <li className="nav-item">
-                            <button onClick={() => logOut(userRepo)} className="btn btn-success">Deconnexion</button>
+                            <button onClick={() => logOut(userRepo)} className="btn btn-outline-success">Deconnexion</button>
                         </li>
                     </ul>
                     </>}
