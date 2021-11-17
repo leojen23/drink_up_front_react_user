@@ -9,7 +9,7 @@ export interface IPlant {
     exposition: string;
     care: string;
     toxicity: string;
-    frequency: boolean;
+    frequency?: number;
     type: string;
 }
 
@@ -23,10 +23,10 @@ export default class Plant {
     exposition: string;
     care: string;
     toxicity: string;
-    frequency: boolean;
+    frequency: number;
     type: string;
 
-    constructor(id: number, name: string, image: string, description: string, exposition: string, care: string,  toxicity: string, frequency: boolean, type: string){
+    constructor(id: number, name: string, image: string, description: string, exposition: string, care: string,  toxicity: string, frequency: number, type: string){
         this.id = id;
         this.name = name;
         this.image = image;

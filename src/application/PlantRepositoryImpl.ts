@@ -9,7 +9,6 @@ import { requestBuilder } from "../core/utils/requestBuilder";
 @injectable()
 export default class PlantRepositoryImpl implements IPlantRepository {
 
-    
     public getAllPlants = async (): Promise<Plant[] | undefined> => {
         
         const requestUrl: string = requestBuilder("/api/plants")

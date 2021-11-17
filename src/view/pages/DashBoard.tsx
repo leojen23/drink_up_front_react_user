@@ -46,7 +46,7 @@ const DashBoard = () => {
                 <span className="visually-hidden">Loading...</span>
             </div>
             </>
-        ) )} ||
+        ) )} || 
 
         {(isAuth && (
             <>
@@ -98,7 +98,7 @@ const DashBoard = () => {
                 <h2>Mes plantes</h2>
                 <div className="d-flex justify-content-start py-5 container">
                     {plants.map((plant) => {
-                    return <div>
+                    return <div key={plant.id}>
                                 <div className="card relative" style={{maxWidth: '20rem'}}>
                                     <h5  className="bg-dark text-light py-1">{plant.nickname}</h5>
                                     <img src={plant.image} className="card-img-top" alt="..." />

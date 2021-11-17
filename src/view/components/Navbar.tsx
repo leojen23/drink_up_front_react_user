@@ -37,7 +37,7 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="main-nav">
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                        <a className="nav-link" href="#">Nos Plantes</a>
+                        <a className="nav-link" href="/catalogue">Nos Plantes</a>
                         </li>
                         <li className="nav-item">
                         <a className="nav-link" href="#">Guide pratique</a>

@@ -42,23 +42,36 @@ interface ToggleIsNotifieddAction {
 };
 
 
-
-
 // PLANT ACTION INTERFACES -----------------------------------------------/
 
 interface GetAllPlantsAction {
     type: ActionType.SET_PLANTS
     plants: IPlant[];
 }
-// interface UpdateInputAction {
-//     type: ActionType.UPDATE_INPUT,
-//     value: string,
-//     inputName: string
-// };
-// interface ClearInputAction {
-//     type: ActionType.CLEAR_INPUT,
-//     inputValue: string,
-// };
+interface setModalAction {
+    type: ActionType.SET_MODAL
+    plant: IPlant
+}
+interface getPlantsRequestAction {
+    type: ActionType.GET_PLANTS_REQUEST
+}
+interface getPlantsSuccessAction {
+    type: ActionType.GET_PLANTS_SUCCESS
+    plants: IPlant[]
+}
+interface getPlantsfailureAction {
+    type: ActionType.GET_PLANTS_FAILURE
+    error: string
+}
+
+// PAGINATION ACTION INTERFACES -----------------------------------------------/
+
+interface setCurrentPageAction {
+    type: ActionType.SET_CURRENT_PAGE
+    currentPage: number
+}
+
+
 interface getUserDataAction {
     type: ActionType.GET_USER_DATA,
     user: Promise<User|null> | null, 
@@ -79,4 +92,9 @@ getUserDataAction |
 SetIsAuthenticatedAction | 
 settUserDataAction | 
 ToggleIsNotifieddAction |
+setModalAction |
+getPlantsRequestAction |
+getPlantsSuccessAction |
+getPlantsfailureAction |
+setCurrentPageAction |
 GetAllPlantsAction;

@@ -15,6 +15,7 @@ import Create from './view/components/User/create';
 import LandingPage from './view/pages/LandingPage';
 import Footer from './view/components/footer';
 import RegisterPage from './view/pages/RegisterPage';
+import CataloguePage from './view/pages/CataloguePage';
 
 
 
@@ -54,6 +55,7 @@ function App() {
         <main className="App">
           <Switch>
             <Route path='/' exact component={LandingPage}/>
+            <Route path='/catalogue' exact component={CataloguePage}/>
             <Route path='/register' exact component={RegisterPage}/>
             {/* <Route path='/login' exact component={LoginPage}/> */}
             {/* {isAuthenticated} ? {userRoutes}  */}

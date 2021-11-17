@@ -15,6 +15,16 @@ export enum ActionType {
     //PLANT ACTION TYPES ---------------------------------
 
     SET_PLANTS = 'SET_PLANTS',
+    SET_MODAL = 'SET_MODAL',
+    GET_PLANTS_REQUEST = 'GET_PLANTS_REQUEST',
+    GET_PLANTS_SUCCESS = 'GET_PLANTS_SUCCESS',
+    GET_PLANTS_FAILURE = 'GET_PLANTS_FAILURE',
+
+
+    //PAGINATION ACTION TYPES ---------------------------------
+
+    SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
+   
 
 
 

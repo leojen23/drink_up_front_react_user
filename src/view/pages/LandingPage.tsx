@@ -15,6 +15,7 @@ import { BsClipboardData } from "react-icons/bs";
 import { FaPagelines } from "react-icons/fa";
 import Button from 'react-bootstrap/Button'
 import MyVerticallyCenteredModal from '../components/plant/showPlantModal';
+import ShowPlantModal from '../components/plant/showPlantModal';
 
 
 
@@ -25,33 +26,14 @@ const LandingPage = (props) => {
     const plantRepo = useInjection(IPlantRepository);
 
     const dispatch = useDispatch();
-    const { getPlants} = bindActionCreators(actionCreators, dispatch);
+    const { fetchPlants, setModal} = bindActionCreators(actionCreators, dispatch);
     const plants = useSelector((state: State ) => state.plant.plants);
-    // console.log('state initial' + state.credentials.isNotified);
-    // const isAuth = useSelector((state: State ) => state.user.isAuthenticated);
-
-
-    const fetchPlants = useCallback( async () => {
-            // const plants: Plant[] | undefined = await plantRepo.getAllPlants();
-            getPlants(plantRepo);
-            // console.log(plants)
-            // return plants;
-    }, []);
-
+    const isLoading = useSelector((state: State ) => state.plant.isLoading);
     
-
     useEffect( () =>   {
-        // const fetchPlants = async () => {
-        //     const plants: Plant[] | undefined = await plantRepo.getAllPlants();
-        // }
-        fetchPlants()
-        // .catch(console.error)
-    }, [fetchPlants]);
-
-
-    // const plants = fetchPlants();
-    console.log (plants)
-
+        fetchPlants(plantRepo)
+    }, []);
+    
     return(
         <div id="landing-page" className="landing-page">
 
@@ -78,7 +60,7 @@ const LandingPage = (props) => {
                         </div>
                         <Carousel>
                         {plants.map((plant) => {
-                        return <Carousel.Item>
+                        return <Carousel.Item key={plant.id}>
                                     <img
                                     className="rounded"
                                     src={plant.image}
@@ -90,10 +72,14 @@ const LandingPage = (props) => {
                                                 <p className="carousel-description mb-5 fw-medium fs-4 ">{plant.description}</p>
                                             </div>
                                             <div className="">
-                                                <Button variant="primary" className="btn fw-bold border-white btn-success rounded"  onClick={() => setModalShow(true)}>Consulter</Button>
+                                                <Button variant="primary" className="btn fw-bold border-white btn-success rounded"  onClick={() => {
+                                                    // console.log(plant.name)
+                                                    setModal(plant)
+                                                    setModalShow(true)} 
+                                                } >Consulter</Button>
 
                                                 {/* Modal de presentation de la plante  */}
-                                                < MyVerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)} plant={plant}/>
+                                                < ShowPlantModal show={modalShow} onHide={() => setModalShow(false)} />
                                             </div>
                                         </div> 
                                     </Carousel.Caption>

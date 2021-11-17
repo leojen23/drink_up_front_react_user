@@ -74,16 +74,46 @@ export const signOut = () =>  ({
 
 
 
-// PLANTS ACTIONS ------------------------------------------------------
+// PLANTS ACTIONS -------------------------------------------------------------------
 
-export const getPlants = (repo: IPlantRepository) => {
+export const fetchPlants = (repo: IPlantRepository) => {
     return async (dispatch: Dispatch) =>  {
+        dispatch(getPlantsRequest())
         const plants: IPlant[] | undefined = await  repo.getAllPlants();
-        dispatch(setPlants(plants));
+        dispatch(getPlantsSuccess(plants));
+        // dispatch(setPlants(plants));
     }
 }
+
+export const getPlantsRequest = () =>  ({
+    type: ActionType.GET_PLANTS_REQUEST,
+})
+export const getPlantsSuccess = (plants: IPlant[] | undefined) =>  ({
+    type: ActionType.GET_PLANTS_SUCCESS,
+    plants: plants
+})
+export const getPlantsFailure = (error: string) =>  ({
+    type: ActionType.GET_PLANTS_FAILURE,
+    error: error
+})
+// export const getPlantsFailure = (error: string) =>  ({
+//     type: ActionType.GET_PLANTS_FAILURE,
+//     error: error
+// })
+
+
+// PAGINATION ACTIONS -------------------------------------------------------------------
+export const setCurrentPage = (currentPage: number) =>  ({
+    type: ActionType.SET_CURRENT_PAGE,
+    currentPage: currentPage
+})
 
 export const setPlants = (plants: IPlant[] | undefined) =>  ({
     type: ActionType.SET_PLANTS,
     plants: plants
+})
+
+export const setModal = (plant: IPlant) =>  ({
+    type: ActionType.SET_MODAL,
+    plant: plant
 })
