@@ -33,7 +33,7 @@ const LandingPage = (props) => {
     useEffect( () =>   {
         fetchPlants(plantRepo)
     }, []);
-    
+
     return(
         <div id="landing-page" className="landing-page">
 
@@ -44,7 +44,7 @@ const LandingPage = (props) => {
                     <span className="fw-bold text-success"> Drink up</span> est l'application qu'il vous pour que vos plantes ne manquent plus jamais d'eau. <br/> 
                     Rejoignez-vous pour <span className="fw-bold text-success fs-lg">une expérience unique</span>.... enfin presque !</p>
                     <div className="py-5 d-flex justify-content-center gap-5">
-                        <a href="#" className="btn fw-bold border-white btn-success rounded ">Découvrir !</a>
+                        <a href="#" className="btn fw-bold border-white btn-success rounded ">Découvrir nos plantes</a>
                         <a href="/register" className="btn fw-bold  btn-outline-light rounded">Créer un compte</a>
                     </div>
                 </div>
@@ -56,7 +56,7 @@ const LandingPage = (props) => {
                     <div className="catalogue col-8 ">
                         <div className="d-flex justify-content-between py-4">
                             <h2 className="text-start text-light fw-light mr-5">Notre catalogue de plantes</h2>
-                            <a href="#" className="btn btn-sm  btn-outline-success rounded">Nos plantes</a>
+                            <a href="/catalogue" className="btn btn-sm  btn-outline-success rounded">Toutes nos plantes</a>
                         </div>
                         <Carousel>
                         {plants.map((plant) => {
