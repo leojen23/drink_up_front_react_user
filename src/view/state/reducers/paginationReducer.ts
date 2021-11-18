@@ -3,7 +3,7 @@ import { ActionType } from "../actions/actionType";
 
 interface PaginationState{
     currentPage: number;
-}
+} 
 
 const InitialState: PaginationState= {
     currentPage: 1
@@ -23,5 +23,6 @@ const paginationReducer = (state: PaginationState = InitialState , action: Actio
             };
     }
 }
+
 export default paginationReducer;
 
