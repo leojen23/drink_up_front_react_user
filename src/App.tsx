@@ -59,6 +59,7 @@ function App() {
             <Route path='/register' exact component={RegisterPage}/>
             {/* <Route path='/login' exact component={LoginPage}/> */}
             {/* {isAuthenticated} ? {userRoutes}  */}
+            
             <Route path='/dashboard' render={props => {return isAuthenticated ?  <DashBoard /> : <Redirect to='/' />;}} />
             <Route path='/users/create' render={props => {return isAuthenticated ?  <Create /> : <Redirect to='/' />;}} />
           </Switch>

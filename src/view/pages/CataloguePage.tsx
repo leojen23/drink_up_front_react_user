@@ -16,28 +16,24 @@ import GardenerPlant from '../../domain/entities/GardenerPlant';
 
 const CataloguePage = (props) => {
 
-
-    // const [currentPage, setCurrentPage] = useState(1);
     
-    const plantRepo = useInjection(IPlantRepository);
-
     const dispatch = useDispatch();
     const { fetchPlants, setCurrentPage} = bindActionCreators(actionCreators, dispatch);
+    
+
+    const plantRepo = useInjection(IPlantRepository);
     const plants: IPlant[] = useSelector((state: State ) => state.plant.plants);
     const isLoading: boolean = useSelector((state: State ) => state.plant.isLoading);
     const currentPage: number = useSelector((state: State ) => state.pagination.currentPage);
-    // console.log(isLoading)
 
     useEffect(() =>   {
         fetchPlants(plantRepo)
     }, []);
 
-    // on determine le nombre d'item par page dans notre navigation
+    // on définit le nombre d'item par page dans notre navigation
     const itemsPerPage: number = 3;
+    //on prépare le tableau pour l'affichage de la navigation
     const paginatedPlants : IPlant[] = Pagination.getData(plants, currentPage, itemsPerPage);
-
-    console.log(paginatedPlants)
-    
 
     if (isLoading) {
         return <div className ="d-flex justify-content-center align-items-center spinner">
@@ -61,24 +57,12 @@ const CataloguePage = (props) => {
                             </div> 
                             <div className="col-md-8">
                                 <div className="card-body relative ">
-
                                     <div className="">
                                         <h4 className="card-title mb-4">{plant.name}</h4>
                                          <p className="card-text">{plant.description}</p>
                                     </div>
-
-                                    {/* <div className=" absolute bottom-0 left-0 d-flex justify-content-between gap-3 align-items-center">
-                                        <span className="card-text bg-success py-1 px-2 rounded text-success fw-bold"><small className="text-muted text-light">{plant.type}</small></span>
-                                        <a href="/" >
-                                            <div className=" text-success d-flex justify-content-center gap-3 align-items-center">
-                                                <BsFillPlusCircleFill />
-                                                <small>Ajouter à ma serre</small>
-                                            </div>
-                                        </a>
-                                    </div> */}
                                 </div>
                             </div>
-                        
                         </div>
                         <Accordion flush>
                                 <Accordion.Item eventKey={plant.id.toString()}>
@@ -116,7 +100,7 @@ const CataloguePage = (props) => {
                                 </Accordion.Item>
                             </Accordion>
                     </li>
-                )}
+                    )}
                 </ul>
                 <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} length={plants.length} onPageChange={setCurrentPage}/> 
             </div>
@@ -125,10 +109,7 @@ const CataloguePage = (props) => {
     </section>
     }
                     
-     
 }
-
-
 
 export default CataloguePage;
 

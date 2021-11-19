@@ -6,10 +6,9 @@ import { LoginData } from "../action-creators";
 import { ActionType } from "./actionType";
 
 
-
 interface LoginRequestAction {
         type: ActionType.LOGIN_REQUEST,
-        data: LoginData
+        
 }
 interface LoginSuccessAction {
         type: ActionType.LOGIN_SUCCESS,
@@ -17,6 +16,18 @@ interface LoginSuccessAction {
 }
 interface LoginFailedAction {
         type: ActionType.LOGIN_FAILED,
+        error: string
+}
+interface getUserDataRequestAction {
+        type: ActionType.GET_USER_DATA_REQUEST,
+        
+}
+interface getUserDataSuccessAction {
+        type: ActionType.GET_USER_DATA_SUCCESS,
+        user: User
+}
+interface getUserDataFailureAction {
+        type: ActionType.GET_USER_DATA_FAILURE,
         error: string
 }
 interface SignInAction {
@@ -34,10 +45,6 @@ interface SignOutAction {
 };
 interface SetIsAuthenticatedAction {
     type: ActionType.SET_IS_AUTHENTICATED,
-    status: boolean,
-};
-interface ToggleIsNotifieddAction {
-    type: ActionType.TOGGLE_IS_NOTIFIED,
     status: boolean,
 };
 
@@ -70,16 +77,11 @@ interface setCurrentPageAction {
     type: ActionType.SET_CURRENT_PAGE
     currentPage: number
 }
+// interface getUserDataAction {
+//     type: ActionType.GET_USER_DATA,
+//     user: Promise<User|null> | null, 
+// };
 
-
-interface getUserDataAction {
-    type: ActionType.GET_USER_DATA,
-    user: Promise<User|null> | null, 
-};
-interface settUserDataAction {
-    type: ActionType.SET_USER_DATA,
-    user: User, 
-};
 
 export type Action = 
 LoginRequestAction | 
@@ -88,13 +90,14 @@ LoginFailedAction |
 SignInAction | 
 RegisterAction | 
 SignOutAction | 
-getUserDataAction | 
 SetIsAuthenticatedAction | 
-settUserDataAction | 
-ToggleIsNotifieddAction |
 setModalAction |
 getPlantsRequestAction |
 getPlantsSuccessAction |
 getPlantsfailureAction |
 setCurrentPageAction |
-GetAllPlantsAction;
+GetAllPlantsAction |
+getUserDataRequestAction |
+getUserDataSuccessAction |
+getUserDataFailureAction 
+;

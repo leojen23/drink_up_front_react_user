@@ -12,7 +12,7 @@ export default class UserRepositoryImpl implements IUserRepository {
         private domain: string = 'drink-up-apiplatform.test:8080';
         private url: string = this.protocole + this.domain;
 
-        public getAuthenticatedUserId = () :number | null =>  {
+        public getAuthenticatedUserId = () :number | undefined =>  {
                 const token: string | null = window.localStorage.getItem('authToken');
 
                 if(token){
@@ -20,12 +20,13 @@ export default class UserRepositoryImpl implements IUserRepository {
                         const userId: number = data.id;
                         return  userId;
                 }
-                return null;
+                return undefined;
         }
         public signOut = () => {
                 this.unsetAxiosToken();
                 this.removeTokenFromLocalStorage();
         }
+        
         public async signIn (username: string, password: string){
             
             const requestUrl: string = requestBuilder("/api/login_check");
@@ -79,7 +80,7 @@ export default class UserRepositoryImpl implements IUserRepository {
                         return null;     
                 }
         }
-        public  getUserData = async (id:number | null): Promise<User | undefined> => {
+        public  getUserData = async (id:number | undefined): Promise<User | undefined> => {
 
                 const requestUrl: string = requestBuilder('/api/users/'+ id)
 

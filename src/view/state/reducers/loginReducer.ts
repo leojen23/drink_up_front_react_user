@@ -1,4 +1,5 @@
 import { AnyAction } from "redux";
+import User from "../../../domain/entities/user";
 
 import { Action } from "../actions/actionInterfaces";
 import { ActionType } from "../actions/actionType";
@@ -12,9 +13,9 @@ interface LoginState{
 
 const InitialState: LoginState= {
     isAuthenticated: false,
-    user: null,
-    error: null,
-    isLoading: false
+    user: {},
+    error: '',
+    isLoading: true
 }
 
 const loginReducer = (state: LoginState = InitialState , action: Action): LoginState => {
@@ -37,6 +38,27 @@ const loginReducer = (state: LoginState = InitialState , action: Action): LoginS
                 isLoading: false, 
                 error: action.error
             }
+        case ActionType.GET_USER_DATA_REQUEST: 
+        return {
+            ...state, 
+            isLoading: true
+        }
+        case ActionType.GET_USER_DATA_SUCCESS:
+            // console.log('ppl')
+            let newState: LoginState = {
+                ...state, 
+                isLoading: false,
+                isAuthenticated: true,
+                user: action.user
+            }
+            // console.log(newState)
+            return newState
+        case ActionType.GET_USER_DATA_FAILURE:
+            return {
+                ...state, 
+                isLoading: false, 
+                error: action.error
+            }
         case ActionType.SIGNOUT:
             return {
                 ...state,
@@ -47,11 +69,6 @@ const loginReducer = (state: LoginState = InitialState , action: Action): LoginS
                 ...state,
                 isAuthenticated: action.status
         }
-        case ActionType.SET_USER_DATA:
-            return {
-                ...state,
-                user: action.user
-            }
         default:
             return {
                 ...state

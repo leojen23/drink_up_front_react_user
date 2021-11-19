@@ -21,7 +21,6 @@ const Pagination = ({currentPage, itemsPerPage, length, onPageChange }) => {
                     </li>}
                 )}
                 
-               
                 <li className={`page-item ${currentPage === pageCount ? "disabled" : ""}`}>
                 {/* <a className="page-link" href="#">&raquo;</a> */}
                 <button className="page-link" onClick={() =>onPageChange(currentPage + 1)}>&raquo;</button>

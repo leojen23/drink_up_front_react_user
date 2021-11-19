@@ -21,19 +21,19 @@ import ShowPlantModal from '../components/plant/showPlantModal';
 
 const LandingPage = (props) => { 
 
-    const [modalShow, setModalShow] = useState(false);
-    // const plants: Plant[] = await ==plantRepo.getAllPlants();
-    const plantRepo = useInjection(IPlantRepository);
-
     const dispatch = useDispatch();
     const { fetchPlants, setModal} = bindActionCreators(actionCreators, dispatch);
+
+    const [modalShow, setModalShow] = useState(false);
+    
+    const plantRepo = useInjection(IPlantRepository);
     const plants = useSelector((state: State ) => state.plant.plants);
     const isLoading = useSelector((state: State ) => state.plant.isLoading);
     
     useEffect( () =>   {
         fetchPlants(plantRepo)
     }, []);
-
+  
     return(
         <div id="landing-page" className="landing-page">
 
@@ -44,7 +44,7 @@ const LandingPage = (props) => {
                     <span className="fw-bold text-success"> Drink up</span> est l'application qu'il vous pour que vos plantes ne manquent plus jamais d'eau. <br/> 
                     Rejoignez-vous pour <span className="fw-bold text-success fs-lg">une expérience unique</span>.... enfin presque !</p>
                     <div className="py-5 d-flex justify-content-center gap-5">
-                        <a href="#" className="btn fw-bold border-white btn-success rounded ">Découvrir nos plantes</a>
+                        <a href="/catalogue" className="btn fw-bold border-white btn-success rounded ">Découvrir nos plantes</a>
                         <a href="/register" className="btn fw-bold  btn-outline-light rounded">Créer un compte</a>
                     </div>
                 </div>
@@ -53,12 +53,27 @@ const LandingPage = (props) => {
             <section className="presentation-login section-padding bg-dark px-4 mw-50" id="presentation-login">
                 <div className="row d-flex justify-content-center ">
 
-                    <div className="catalogue col-8 ">
-                        <div className="d-flex justify-content-between py-4">
+                    <div className="catalogue col-8">
+                        <div className="d-flex justify-content-between py-4 ">
                             <h2 className="text-start text-light fw-light mr-5">Notre catalogue de plantes</h2>
                             <a href="/catalogue" className="btn btn-sm  btn-outline-success rounded">Toutes nos plantes</a>
                         </div>
+
+                        {isLoading ? (
+                        <div className ="d-flex justify-content-center align-items-center mt-5">
+                            <div className="d-flex flex-column align-items-center py-5">
+
+                                <div className="spinner-border text-white mb-5  " role="status"></div>
+                                <span className="visually text-light fs-4">Nous chargeons notre catalogue de plantes !</span>
+
+                            </div>
+                        </div>
+
+
+                        ) : (
+
                         <Carousel>
+                        
                         {plants.map((plant) => {
                         return <Carousel.Item key={plant.id}>
                                     <img
@@ -86,8 +101,8 @@ const LandingPage = (props) => {
                                 </Carousel.Item>
                                 })}
                         </Carousel>
-                        
-                                               
+
+                        )}                  
                         </div>
                     <div className="login-form col-4 d-flex align-items-end">
                         <LoginForm />
@@ -99,66 +114,61 @@ const LandingPage = (props) => {
 
             </section>
 
-
-
-          
-  
-
-        <section className="easy-steps py-5 px-4">
-            
-            <div className="row ">
-                <div className="col-12 h-auto">
-                    <div className="d-flex justify-content-center gap-3 align-items-center pb-5">
-                        <h2 className="fw-normal">Créer votre serre virtuelle</h2>
-                        <span className="fw-bold text-success py-2"><FaPagelines size={45} />...en toute simplicité !</span>
-                    </div>
-                    <a href="#" className="btn fw-bold  btn-outline-success rounded mb-5">Je crée ma serre virtuelle</a>
-                </div>
-            </div>
-
-
-            <div className="row procedure-cards py-2 ">
+            <section className="easy-steps py-5 px-4">
                 
-                <div className="col-4 d-flex justify-content-center">
-                    <div className=" card rounded shadow" style={{maxWidth: "20rem"}}>
-                        <div className="card-header bg-success fw-bold text-light py-2"><BsPersonCircle size={35} /></div>
-                        <div className="card-body">
-                    
-                            <h4 className="card-title">Je créer mon compte</h4>
-                            <p className="card-text">La sécurité et la confidentialité de vos données sont notre priorité.<br/>
-                            <a className="link-success" href="#" target="_blank" rel="noopener noreferrer">Politique de confidentialité</a>
-                            
-                           </p>
+                <div className="row ">
+                    <div className="col-12 h-auto">
+                        <div className="d-flex justify-content-center gap-3 align-items-center pb-5">
+                            <h2 className="fw-normal">Créer votre serre virtuelle</h2>
+                            <span className="fw-bold text-success py-2"><FaPagelines size={45} />...en toute simplicité !</span>
                         </div>
+                        <a href="#" className="btn fw-bold  btn-outline-success rounded mb-5">Je crée ma serre virtuelle</a>
                     </div>
                 </div>
-                <div className="col-4 d-flex justify-content-center">
-                    <div className=" card rounded shadow" style={{maxWidth: "20rem"}}>
-                        <div className="card-header bg-success fw-bold text-light py-2"><BsFlower2 size={35} /></div>
-                        <div className="card-body">
-                            <h4 className="card-title">J'ajoute une plante</h4>
-                            <p className="card-text">Vous pouvez ajouter facilement des plantes dans votre serre virtuelle en quelques clicks!</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-4 d-flex justify-content-center">
-                    <div className=" card rounded shadow" style={{maxWidth: "20rem"}}>
-                        <div className="card-header bg-success fw-bold text-light py-2"><BsClipboardData size={35} /></div>
-                        <div className="card-body">
-                            <h4 className="card-title">Je gère mes plantes</h4>
-                            <p className="card-text">Grâce à votre tableau de board vous pouvez facilement gérer les plantes de votre serre virtuelle</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                {/* </div> */}
-                 
-                    {/* <div className="col-4">
-                        <img className="w-75" src="https://images.unsplash.com/photo-1566664981274-ef2008590fe5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="image d'une serre de jardin" />
-                    </div> */}
-                {/* </div> */}
 
-        </section>
+
+                <div className="row procedure-cards py-2 ">
+                    
+                    <div className="col-4 d-flex justify-content-center">
+                        <div className=" card rounded shadow" style={{maxWidth: "20rem"}}>
+                            <div className="card-header bg-success fw-bold text-light py-2"><BsPersonCircle size={35} /></div>
+                            <div className="card-body">
+                        
+                                <h4 className="card-title">Je créer mon compte</h4>
+                                <p className="card-text">La sécurité et la confidentialité de vos données sont notre priorité.<br/>
+                                <a className="link-success" href="#" target="_blank" rel="noopener noreferrer">Politique de confidentialité</a>
+                                
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-4 d-flex justify-content-center">
+                        <div className=" card rounded shadow" style={{maxWidth: "20rem"}}>
+                            <div className="card-header bg-success fw-bold text-light py-2"><BsFlower2 size={35} /></div>
+                            <div className="card-body">
+                                <h4 className="card-title">J'ajoute une plante</h4>
+                                <p className="card-text">Vous pouvez ajouter facilement des plantes dans votre serre virtuelle en quelques clicks!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-4 d-flex justify-content-center">
+                        <div className=" card rounded shadow" style={{maxWidth: "20rem"}}>
+                            <div className="card-header bg-success fw-bold text-light py-2"><BsClipboardData size={35} /></div>
+                            <div className="card-body">
+                                <h4 className="card-title">Je gère mes plantes</h4>
+                                <p className="card-text">Grâce à votre tableau de board vous pouvez facilement gérer les plantes de votre serre virtuelle</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {/* </div> */}
+                    
+                        {/* <div className="col-4">
+                            <img className="w-75" src="https://images.unsplash.com/photo-1566664981274-ef2008590fe5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="image d'une serre de jardin" />
+                        </div> */}
+                    {/* </div> */}
+
+            </section>
         
 
         </div>

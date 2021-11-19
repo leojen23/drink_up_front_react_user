@@ -12,11 +12,11 @@ import { renderInputField } from '../formFields';
     
     const LoginForm = ({handleSubmit}) => {
         
-        const userRepo: IUserRepository = useInjection(IUserRepository);
         const dispatch = useDispatch();
         const { logIn} = bindActionCreators(actionCreators, dispatch);
-
-
+        
+        
+        const userRepo: IUserRepository = useInjection(IUserRepository);
         const submit = (values) => {
             logIn({username: values.username, password: values.password}, userRepo)
         }

@@ -1,5 +1,19 @@
 import GardenerPlant from "./GardenerPlant";
 
+
+
+
+
+
+export interface IUser {
+    id: number;
+    gender: string;
+    firstname: string;
+    surname: string;
+    is_notified: boolean;
+    gardenerPlants: GardenerPlant[];
+    numberOfPlants: number;
+}
 export default class User {
 
     id: number;
