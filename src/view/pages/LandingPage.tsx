@@ -68,50 +68,38 @@ const LandingPage = (props) => {
 
                             </div>
                         </div>
-
-
                         ) : (
 
                         <Carousel>
-                        
-                        {plants.map((plant) => {
-                        return <Carousel.Item key={plant.id}>
-                                    <img
-                                    className="rounded"
-                                    src={plant.image}
-                                    />
-                                    <Carousel.Caption>
-                                        <div className ="d-flex flex-column align-items-stretch justify-content-between">
-                                            <div>
-                                                <h3 className="py-5 display-3 fw-bold text-white">{plant.name}</h3>
-                                                <p className="carousel-description mb-5 fw-medium fs-4 ">{plant.description}</p>
-                                            </div>
-                                            <div className="">
-                                                <Button variant="primary" className="btn fw-bold border-white btn-success rounded"  onClick={() => {
-                                                    // console.log(plant.name)
-                                                    setModal(plant)
-                                                    setModalShow(true)} 
-                                                } >Consulter</Button>
+                            {plants.map((plant) => {
+                            return <Carousel.Item key={plant.id}>
+                            <img className="rounded" src={plant.image} />
+                            <Carousel.Caption>
+                                <div className ="d-flex flex-column align-items-stretch justify-content-between">
+                                    <div>
+                                        <h3 className="py-5 display-3 fw-bold text-white">{plant.name}</h3>
+                                        <p className="carousel-description mb-5 fw-medium fs-4 ">{plant.description}</p>
+                                    </div>
+                                    <div className="">
+                                        <Button variant="primary" className="btn fw-bold border-white btn-success rounded"  onClick={() => {
+                                            // console.log(plant.name)
+                                            setModal(plant)
+                                            setModalShow(true)} 
+                                        } >Consulter</Button>
 
-                                                {/* Modal de presentation de la plante  */}
-                                                < ShowPlantModal show={modalShow} onHide={() => setModalShow(false)} />
-                                            </div>
-                                        </div> 
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                                })}
-                        </Carousel>
-
-                        )}                  
-                        </div>
+                                        {/* Modal de presentation de la plante  */}
+                                        < ShowPlantModal show={modalShow} onHide={() => setModalShow(false)} />
+                                    </div>
+                                </div> 
+                            </Carousel.Caption>
+                        </Carousel.Item>})}
+                            
+                        </Carousel>)}                  
+                    </div>
                     <div className="login-form col-4 d-flex align-items-end">
                         <LoginForm />
                     </div>
-            
                 </div>
-
-            
-
             </section>
 
             <section className="easy-steps py-5 px-4">

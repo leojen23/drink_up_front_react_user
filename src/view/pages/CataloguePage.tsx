@@ -30,9 +30,9 @@ const CataloguePage = (props) => {
         fetchPlants(plantRepo)
     }, []);
 
-    // on définit le nombre d'item par page dans notre navigation
+    // on définit le nombre d'item par page dans notre pagination
     const itemsPerPage: number = 3;
-    //on prépare le tableau pour l'affichage de la navigation
+    //on prépare le tableau pour l'affichage de la pagination
     const paginatedPlants : IPlant[] = Pagination.getData(plants, currentPage, itemsPerPage);
 
     if (isLoading) {
@@ -42,11 +42,11 @@ const CataloguePage = (props) => {
                     </div>
                 </div>
         } else {
-        return  <section className='bg-transparent p-5' id="catalogue-page" >
+        return  <section className='bg-transparent p-5 container' id="catalogue-page" >
         <header>
             <h1 className="pb-5">Notre catalogues de plantes</h1>
         </header>
-        <div className="row container">
+        <div className="row">
             <div className="col-8">
                 <ul className="plant-list gap-2">
                 {paginatedPlants.map((plant) => 

@@ -7,6 +7,7 @@ import IUserRepository from '../../../domain/adapters/repositories/IUserReposito
 import { actionCreators } from '../../state';
 import { loginFailed } from '../../state/action-creators';
 import { renderInputField } from '../formFields';
+import { BsPersonCircle } from "react-icons/bs";
 
 
     
@@ -25,7 +26,9 @@ import { renderInputField } from '../formFields';
         // <div className='d-flex justify-content-center'>
 
             <div className='login-form mx-5 mt-5 ' id="login-form">
-                <h2 className='text-dark bg-light rounded mb-2 fw-light border border-light p-3'>Accès à votre serre virtuelle</h2>
+                <div className="d-flex justify-content-center mb-3">
+                    <span className="text-light fw-normal"><BsPersonCircle size={50} /></span>
+                </div>
                 <form onSubmit={handleSubmit(submit)}>
                     <div className="form-group">
                         <Field name='username' component={renderInputField} label='Adresse e-mail' type='email' />

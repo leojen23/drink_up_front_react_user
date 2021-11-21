@@ -10,10 +10,6 @@ import LoginForm from '../components/User/LoginForm';
 import RegisterForm from '../components/User/RegisterForm';
 
 
-
-
-
-
 const RegisterPage = (props) => {
     
     const userRepo = useInjection(IUserRepository);

@@ -38,26 +38,29 @@
 }
 
 #dashboard .stats{
-  height:400px;
+  height:auto;
 }
+
 #dashboard .hero{
-  height:100vh;
-  /* background-color: lightgray;  */
- 
+ height:auto;
+}
+#dashboard .hero-right{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05),rgba(0, 0, 0, 0.0)), url("https://images.pexels.com/photos/776656/pexels-photo-776656.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 #dashboard .stat-item{
-  height:220px;
-  width:220px;
-  background-color: cornsilk;
+  height:210px;
+  width:210px;
 }
 #dashboard .serre{
-  background-color: cornsilk;
+  background-image:  linear-gradient(rgba(161, 67, 67, 0.0),rgba(0, 0, 0, 0.0)), url("https://images.pexels.com/photos/129731/pexels-photo-129731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height:500px
 }
-
-
-
-
-
 
 #landing-page .hero {
   height: 100vh;
