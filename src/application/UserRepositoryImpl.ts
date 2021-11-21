@@ -26,7 +26,7 @@ export default class UserRepositoryImpl implements IUserRepository {
                 this.unsetAxiosToken();
                 this.removeTokenFromLocalStorage();
         }
-        
+
         public async signIn (username: string, password: string){
             
             const requestUrl: string = requestBuilder("/api/login_check");
