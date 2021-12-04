@@ -44,7 +44,7 @@ const CataloguePage = (props) => {
         } else {
         return  <section className='bg-transparent p-5 container' id="catalogue-page" >
         <header>
-            <h1 className="pb-5">Notre catalogues de plantes</h1>
+            <h1 className="pb-5">Notre catalogue de plantes</h1>
         </header>
         <div className="row">
             <div className="col-8">

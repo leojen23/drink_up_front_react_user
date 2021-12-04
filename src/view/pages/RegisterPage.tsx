@@ -11,9 +11,7 @@ import RegisterForm from '../components/User/RegisterForm';
 
 
 const RegisterPage = (props) => {
-    
-    const userRepo = useInjection(IUserRepository);
-   
+
     return (
     
         <div className='bg-transparent p-5' id="register-page" >
@@ -21,7 +19,7 @@ const RegisterPage = (props) => {
             <div className="position-absolute top-0 start-0 bottom-0 end-0 bg-dark opacity-75 rounded"></div>
 
                 <div className='position-relative d-flex justify-content-center pt-5 '>
-                    <RegisterForm />
+                    <RegisterForm  />
                 </div> 
             </div>
         </div>

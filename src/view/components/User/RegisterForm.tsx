@@ -20,6 +20,7 @@ import { BsPersonCircle } from "react-icons/bs";
             logIn({username:values.email, password:values.passwordReg}, userRepo)
         }
         
+        
     // console.log(props.onsubmit)
     return(
         <div className='register-form '>

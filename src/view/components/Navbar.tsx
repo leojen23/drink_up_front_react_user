@@ -1,27 +1,29 @@
 
 import { useInjection } from 'inversify-react';
-import React from 'react'
+import  { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import IUserRepository from '../../domain/adapters/repositories/IUserRepository';
 import { actionCreators } from '../state';
 import { State } from '../state/store';
-
 import { SiWeightsandbiases } from "react-icons/si";
-
+import Nav from 'react-bootstrap/Nav'
+import {BrowserRouter as Router, Switch, Route, Redirect, NavLink} from "react-router-dom";
 
 
 const Navbar = () => {
     
+    const [active, setActive] = useState('false');
+
     const userRepo = useInjection(IUserRepository);
 
     const dispatch = useDispatch();
     const { logOut } = bindActionCreators(actionCreators, dispatch);
     const isAuth: boolean = useSelector((state: State) => state.login.isAuthenticated);
-    console.log(isAuth)
+    console.log(active)
 
     return(
+        <div>
 
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
@@ -36,8 +38,13 @@ const Navbar = () => {
 
                 <div className="collapse navbar-collapse" id="main-nav">
                     <ul className="navbar-nav me-auto">
+                        {isAuth && <>
                         <li className="nav-item">
-                        <a className="nav-link" href="/catalogue">Nos Plantes</a>
+                        <a className="nav-link " href="/serre-virtuelle"  onClick={() => setActive("true")}>Ma serre virtuelle</a>
+                        </li>
+                        </>}
+                        <li className="nav-item" aria-current="page">
+                        <a className="nav-link "  href="/catalogue">Nos Plantes</a>
                         </li>
                         <li className="nav-item">
                         <a className="nav-link" href="#">Guide pratique</a>
@@ -45,6 +52,10 @@ const Navbar = () => {
                         <li className="nav-item">
                         <a className="nav-link" href="#">Nous contacter</a>
                         </li>
+                        {/* <NavLink to="/about" className="nav-link" isActive={(match, location) => {if (!match) {
+                            return false;
+                            }}}>About</NavLink> */}
+
                     </ul>
                     {!isAuth && <>
                     <ul className=' navbar-nav ml-auto'>
@@ -63,6 +74,13 @@ const Navbar = () => {
                 </div>
             </div>
         </nav>
+        
+
+
+
+        </div>
+
+        
     )
 }
 

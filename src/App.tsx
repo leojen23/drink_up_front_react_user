@@ -16,6 +16,8 @@ import LandingPage from './view/pages/LandingPage';
 import Footer from './view/components/footer';
 import RegisterPage from './view/pages/RegisterPage';
 import CataloguePage from './view/pages/CataloguePage';
+import CreateGardenerPlant from './view/components/gardenerPlant/CreateGardenerPlant';
+import CreateGardenerPlantPage from './view/pages/CreateGardenerPlantPage';
 
 
 
@@ -56,12 +58,10 @@ function App() {
           <Switch>
             <Route path='/' exact component={LandingPage}/>
             <Route path='/catalogue' exact component={CataloguePage}/>
-            <Route path='/register' exact component={RegisterPage}/>
-            {/* <Route path='/login' exact component={LoginPage}/> */}
-            {/* {isAuthenticated} ? {userRoutes}  */}
-            
-            <Route path='/dashboard' render={props => {return isAuthenticated ?  <DashBoard /> : <Redirect to='/' />;}} />
-            <Route path='/users/create' render={props => {return isAuthenticated ?  <Create /> : <Redirect to='/' />;}} />
+            <Route path='/enregistrement' exact component={RegisterPage}/>
+            <Route path='/serre-virtuelle' render={props => {return isAuthenticated ?  <DashBoard /> : <Redirect to='/' />;}} />
+            {/* <Route path='/utilisateur/enregistrement' render={props => {return isAuthenticated ?  <Create /> : <Redirect to='/' />;}} /> */}
+            <Route path='/plantes/ajout' render={() => {return isAuthenticated ?  <CreateGardenerPlantPage /> : <Redirect to='/' />;}} />
           </Switch>
         </main>
         <Footer/>

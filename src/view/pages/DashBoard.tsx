@@ -13,7 +13,7 @@ import { IGardenerPlant } from '../../domain/entities/GardenerPlant';
 import {State} from '../state/store'
 import LoginForm from '../components/User/LoginForm';
 import User from '../../domain/entities/user';
-import {  BsFillEmojiWinkFill, BsFillEyeFill, BsFillTrashFill, BsFillPencilFill, BsFillDropletFill} from "react-icons/bs";
+import {  BsFillEmojiWinkFill, BsFillEyeFill, BsFillTrashFill, BsFillPencilFill, BsFillDropletFill, BsEmojiWink} from "react-icons/bs";
 import { FaPagelines } from "react-icons/fa";
 
 
@@ -63,7 +63,7 @@ const DashBoard = () => {
                                 <p className="py-4">Depuis votre espace serre virtuelle, vous pouvez gérer l'arrosage de toutes vos plantes en un click !</p>
                             </div>
                             <div>
-                                <a href="#" className="btn btn-success rounded">Ajouter une plante</a>
+                                <a href="/plantes/ajout" className="btn btn-success rounded">Ajouter une plante</a>
                             </div>
                         </div>
 
@@ -151,41 +151,55 @@ const DashBoard = () => {
                             </div>
                         </div>
 
-                        <div className="row">
-                        {plants.map((plant) => {
-                        return <div className="col-3 rounded">
-                            <div key={plant.id} className="card border-0 shadow rounded" style={{maxWidth: '20rem'}}>
-
-                                        <div className="card-header bg-dark d-flex justify-content-center rounded-top align-items-center  ">
-                                            <h5  className="text-light mb-0 py-2">{plant.nickname}</h5>
-                                        </div>
-                                    
-                                        <img src={plant.image} className="card-img-top " alt="..." />
-
-                                        <div className="card-body bg-dark py-2">
-                                            <div className="d-flex justify-content-around bg-transparent">
-                                                <button type="button" className="btn btn-success  bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Voir la plante">
-                                                <BsFillEyeFill size={25} className="text-light"/>
-                                                </button>
-                                                <button type="button" className="btn btn-success  bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Modifier les paramètres de ma plante">
-                                                <BsFillPencilFill size={25} className="text-light"/>
-                                                </button>
-                                                <button type="button" className="btn btn-success bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="*Supprimer la plante de ma serre virtuelle">
-                                                <BsFillTrashFill size={25} className="text-light"/>
-                                                </button>
-                                                <button type="button" className="btn btn-success  bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Arroser ma plante">
-                                                <BsFillDropletFill size={25} className="text-warning"/>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className="card-footer d-flex justify-content-start bg-success ">
-                                            <small className="text-white fw-bold">Prochain arrosage le : <em>12/05/2022</em> </small>
-                                        </div>
+                        {/* Affichage quand la serre virtuelle est vide  */}
+                        { plants.length == 0 ? (
+                            <div className =" row d-flex justify-content-center align-items-center">
+                            <div className="col-6 border border-2 py-5 bg-light rounded ">
+                                <div className="mb-4">
+                                    <p className="text-dark fw-bolder  fs-3 mx-5">Votre serre virtuelle est actuellement vide ! </p>
+                                    <span className="text-success"><BsEmojiWink size={50} /></span>
+                                </div>
+                                <div>
+                                    <a href="/plantes/ajout" className="btn btn-success rounded">Ajouter une plante</a>
                                 </div>
                             </div>
-                            })}
+                        </div>) : 
 
-                        </div>
+                        // Affichage lorsque la serre virtuelle contient au moins une plante
+                        (<div className="row">
+                        {plants.map((plant) => {
+                        return <div className="col-3 rounded">
+                                    <div key={plant.id} className="card border-0 shadow rounded" style={{maxWidth: '20rem'}}>
+
+                                                <div className="card-header bg-dark d-flex justify-content-center rounded-top align-items-center  ">
+                                                    <h5  className="text-light mb-0 py-2">{plant.nickname}</h5>
+                                                </div>
+                                            
+                                                <img src={plant.image} className="card-img-top " alt="..." />
+
+                                                <div className="card-body bg-dark py-2">
+                                                    <div className="d-flex justify-content-around bg-transparent">
+                                                        <button type="button" className="btn btn-success  bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Voir la plante">
+                                                        <BsFillEyeFill size={25} className="text-light"/>
+                                                        </button>
+                                                        <button type="button" className="btn btn-success  bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Modifier les paramètres de ma plante">
+                                                        <BsFillPencilFill size={25} className="text-light"/>
+                                                        </button>
+                                                        <button type="button" className="btn btn-success bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="*Supprimer la plante de ma serre virtuelle">
+                                                        <BsFillTrashFill size={25} className="text-light"/>
+                                                        </button>
+                                                        <button type="button" className="btn btn-success  bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Arroser ma plante">
+                                                        <BsFillDropletFill size={25} className="text-warning"/>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div className="card-footer d-flex justify-content-start bg-success ">
+                                                    <small className="text-white fw-bold">Prochain arrosage le : <em>12/05/2022</em> </small>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    })}
+                        </div>)}
                     </div>
                 </section>
                 </>

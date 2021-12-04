@@ -10,7 +10,7 @@ export interface IUser {
     gender: string;
     firstname: string;
     surname: string;
-    is_notified: boolean;
+    isNotified: boolean;
     gardenerPlants: GardenerPlant[];
     numberOfPlants: number;
 }
@@ -20,16 +20,16 @@ export default class User {
     gender: string;
     firstname: string;
     surname: string;
-    is_notified: boolean;
+    isNotified: boolean;
     gardenerPlants: GardenerPlant[];
     numberOfPlants: number;
 
-    constructor(id: number, gender: string, firstname: string, surname: string, is_notified: boolean, gardenerPlants:GardenerPlant[], numberOfPlants: number){
+    constructor(id: number, gender: string, firstname: string, surname: string, isNotified: boolean, gardenerPlants:GardenerPlant[], numberOfPlants: number){
         this.id = id;
         this.gender = gender;
         this.firstname = firstname;
         this.surname = surname;
-        this.is_notified = is_notified;
+        this.isNotified = isNotified;
         this.gardenerPlants = gardenerPlants;
         this.numberOfPlants = numberOfPlants;
     }

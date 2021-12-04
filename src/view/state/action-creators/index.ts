@@ -24,7 +24,7 @@ export const logIn = ({username, password}, repo: IUserRepository) => {
         const user: User|undefined = await repo.getUserData(userId);
         if (user){
             dispatch(loginSuccess(user));
-            dispatch(push('/dashboard'));
+            dispatch(push('/serre-virtuelle'));
           }else {
               dispatch(loginFailed('une erreur est survenue'))
           }

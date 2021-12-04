@@ -50,9 +50,10 @@ export default class UserRepositoryImpl implements IUserRepository {
                 const apiEndPoint: string = '/api/users'  
                 const userDetails:  registerFormData = {email, password, gender, firstname, surname, isNotified  };
                 // console.log(userDetails);
-                // console.log(userDetails);
+                console.log(userDetails);
                 
                 try {
+                        // console.log('ppl')
                     const data: any = (await axios.post(this.url + apiEndPoint, userDetails)).data
                 } catch (error) {
                         return  alert (error)
@@ -92,7 +93,7 @@ export default class UserRepositoryImpl implements IUserRepository {
                                 return new GardenerPlant(gardenerPlant.id, gardenerPlant.nickname, gardenerPlant.sunlight, gardenerPlant.size, gardenerPlant.season, gardenerPlant.topography,gardenerPlant.location, gardenerPlant['plant'].frequency, gardenerPlant['plant'].image)
                         })
 
-
+                        // console.log(data)
                         const user: User | undefined = new User(data.id, data.gender, data.firstname, data.surname, data.is_notified, gardenerPlants, data.totalNumberOfGardenerPlants);
                        
                         return user;

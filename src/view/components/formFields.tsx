@@ -1,5 +1,5 @@
 
-export const renderInputField = ({input,type, label, meta: {touched, error} }:any) => (
+export const renderInputField = ({input, type, label, meta: {touched, error} }:any) => (
     <div className="form-group text-light">
         <label htmlFor={input.name} className="form-label mt-4 mr-4 float-start">{label}</label>
         <input {...input} type={ type } id={input.name} className="form-control rounded" placeholder={label}/>
@@ -20,5 +20,13 @@ export const renderSwitchField = ({input, type, label, children, meta: {touched,
     <div className="form-check form-switch mt-4 text-light">
         <input {...input} className="form-check-input "  type={type} id={input.name} defaultValue={defaultValue} name='isNotified' />
         <label className="form-check-label float-start ml-5" htmlFor={input.name} >{label}</label>
+    </div>
+);
+
+export const renderHiddenField = ({input, type, userId , meta: {touched, error, value} }:any) => (
+    <div className="form-group text-light">
+        <input {...input} type={ type } id={input.name} className="form-control rounded"/>
+        {touched && error &&
+        <small className='error'>{error}</small>}
     </div>
 );

@@ -45,7 +45,7 @@ const LandingPage = (props) => {
                     Rejoignez-vous pour <span className="fw-bold text-success fs-lg">une expérience unique</span>.... enfin presque !</p>
                     <div className="py-5 d-flex justify-content-center gap-5">
                         <a href="/catalogue" className="btn fw-bold border-white btn-success rounded ">Découvrir nos plantes</a>
-                        <a href="/register" className="btn fw-bold  btn-outline-light rounded">Créer un compte</a>
+                        <a href="/enregistrement" className="btn fw-bold  btn-outline-light rounded">Créer un compte</a>
                     </div>
                 </div>
             </section>
@@ -97,7 +97,7 @@ const LandingPage = (props) => {
                         </Carousel>)}                  
                     </div>
                     <div className="login-form col-4 d-flex align-items-end">
-                        <LoginForm />
+                        <LoginForm  />
                     </div>
                 </div>
             </section>
