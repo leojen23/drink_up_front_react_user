@@ -63,17 +63,17 @@
 }
 
 #landing-page .hero {
-  height: 100vh;
+  
   background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.7)), url("https://images.pexels.com/photos/1470168/pexels-photo-1470168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-repeat: no-repeat;
   background-position:center;
   background-size: cover;
 }
-.hero .lead {
+/* .hero .lead {
   margin-left:200px;
   margin-right:200px;
   margin-bottom:15px
-}
+} */
 .section-padding{
   padding-top:50px;
   padding-bottom:35px;
@@ -121,8 +121,19 @@
 .main-title{
   color:white;
   font-size: 7rem;
+} 
+@media screen and (max-width:768px){
+  .main-title{
+    color:white;
+    font-size: 4rem;
+  } 
 }
-
+/* @media screen and (min-width:639px){
+  .main-title{
+    color:white;
+    font-size: 4rem;
+  } 
+} */
 
 .main-footer {
   background-color:#e3e3e3
@@ -146,4 +157,23 @@
 }
 
 
+/* CONFIRMATION ALERT BOX */
+/* div.react-confirm-alert-overlay {
+  opacity: 1!important;
+} */
+div.react-confirm-alert-button-group button {
+  background-color:#3bbf62!important
+}
+div.react-confirm-alert-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+div.react-confirm-alert-body h1{
+
+ font-size: 16px;
+ width: 100%;
+ text-align: center;
+}
 

@@ -21,7 +21,7 @@
     "jsx": "react-jsx",
     "experimentalDecorators": true,
     "noImplicitAny": false,
-    "enableReinitialize" : true
+    // "enableReinitialize" : true
   },
   "include": [
     "src"

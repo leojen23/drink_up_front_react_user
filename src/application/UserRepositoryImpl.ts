@@ -4,6 +4,9 @@ import { injectable } from "inversify";
 import axios, { AxiosResponse } from "axios";
 import {requestBuilder} from "../core/utils/requestBuilder";
 import GardenerPlant, { IGardenerPlant } from "../domain/entities/GardenerPlant";
+import { toast } from "react-toastify";
+import { isConstructorDeclaration } from "typescript";
+import moment from "moment";
 
 @injectable()
 export default class UserRepositoryImpl implements IUserRepository {
@@ -32,31 +35,31 @@ export default class UserRepositoryImpl implements IUserRepository {
             const requestUrl: string = requestBuilder("/api/login_check");
             const credentials: any = {username, password};
             try {
-                   
-                const data: any = (await axios.post<AxiosResponse>(requestUrl, credentials)).data
-                const token: string = data.token
+                    const data: any = (await axios.post<AxiosResponse>(requestUrl, credentials)).data
+                    const token: string = data.token
+                    
                     
             this.setAxiosToken(token);
             this.storeTokenInLocalStorage(token);
 
             } catch (error: any) {
-                return  alert (error)
+                toast.error('une erreur est survenue', { delay: 2000 })
+                console.log(error)
             }
         }
-
 
         public  register = async ({email, password, gender, firstname, surname, isNotified}: registerFormData): Promise<void> => {
              
                 const apiEndPoint: string = '/api/users'  
                 const userDetails:  registerFormData = {email, password, gender, firstname, surname, isNotified  };
-                // console.log(userDetails);
-                console.log(userDetails);
                 
                 try {
                         // console.log('ppl')
                     const data: any = (await axios.post(this.url + apiEndPoint, userDetails)).data
+                    toast.success('Votre compte a été créé avec succès !', { delay: 2000 })
                 } catch (error) {
-                        return  alert (error)
+                        toast.error("Une erreur s'est produite lors de la création de votre compte !", { delay: 2000 })
+                        console.log(error)
                 }
 
         }
@@ -82,18 +85,23 @@ export default class UserRepositoryImpl implements IUserRepository {
                 }
         }
         public  getUserData = async (id:number | undefined): Promise<User | undefined> => {
+                console.log('je passe la encore')
 
                 const requestUrl: string = requestBuilder('/api/users/'+ id)
+                // console.log(requestUrl)
 
                 try {
                         const data: any= (await axios.get<any>(requestUrl)).data;
+                        console.log(data);
+                        // console.log(data);
                         const gardenerPlantsData: IGardenerPlant[] = data.gardenerPlants;
+                        // console.log(gardenerPlantsData[0].wateringFrequency)
                         const gardenerPlants: GardenerPlant [] = gardenerPlantsData.map(function(gardenerPlant){
                                 
-                                return new GardenerPlant(gardenerPlant.id, gardenerPlant.nickname, gardenerPlant.sunlight, gardenerPlant.size, gardenerPlant.season, gardenerPlant.topography,gardenerPlant.location, gardenerPlant['plant'].frequency, gardenerPlant['plant'].image)
+                                return new GardenerPlant(gardenerPlant.id, gardenerPlant.nickname, gardenerPlant.sunlight, gardenerPlant.size, gardenerPlant.season, gardenerPlant.topography,gardenerPlant.location, gardenerPlant['plant'].frequency, gardenerPlant['plant'].image, gardenerPlant['plant'].id, gardenerPlant['plant'].name, gardenerPlant.nextWateringDate, moment(gardenerPlant.lastWateringDate).format('YYYY-MM-DD'), gardenerPlant.wateringStatus, gardenerPlant.wateringFrequency)
                         })
 
-                        // console.log(data)
+                        console.log(gardenerPlants)
                         const user: User | undefined = new User(data.id, data.gender, data.firstname, data.surname, data.is_notified, gardenerPlants, data.totalNumberOfGardenerPlants);
                        
                         return user;
@@ -102,6 +110,21 @@ export default class UserRepositoryImpl implements IUserRepository {
                              
                 }
         }
+        public water = async (gardenerPlant: IGardenerPlant, userIRI: string, plantIRI:string, wateringDate: string): Promise<void> => {
+
+                const requestUrl = requestBuilder('/api/gardener_plants/' + gardenerPlant.id);
+                // console.log(requestUrl);
+                const gardenerPlantDetails = {user: userIRI, plant:plantIRI , nickname: gardenerPlant.nickname, sunlight: gardenerPlant.sunlight, size: gardenerPlant.size, season:gardenerPlant.season, topography:gardenerPlant.topography, location: gardenerPlant.location, lastWateringDate: wateringDate };
+        
+                try {
+                        const data: any = (await axios.put(requestUrl, gardenerPlantDetails)).data
+                        console.log(data)
+                } catch (error) {
+                    toast.error('Une erreur est survenue lors de la modification de votre plante', { delay: 2000 })
+                     console.log(error)
+                }
+            }
+
         
 }
 export interface registerFormData {

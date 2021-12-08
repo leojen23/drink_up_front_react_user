@@ -7,8 +7,6 @@ import { BsFillTelephoneForwardFill } from "react-icons/bs";
 const Footer = () => {
     
     return(
-
-       
         <footer className="text-center text-lg-start text-muted ">
         
           <section className=" main-footer pt-4 bg-success">
@@ -33,22 +31,25 @@ const Footer = () => {
                   </p>
                 </div>
                
-                <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
                   <h6 className="text-uppercase fw-bold mb-4">
                     Informations de contact
                   </h6>
-                  <div className="d-flex justify-content-start">
-                     <BsFillHouseDoorFill size={22} /> 
-                     <p className="mx-2">69 Route de la verdure</p>
+                  <div className="d-flex flex-column align-items-center">
+                    <div className="d-flex justify-content-start">
+                      <BsFillHouseDoorFill size={22} /> 
+                      <p className="mx-2">69 Route de la verdure</p>
+                    </div>
+                    <div className="d-flex justify-content-start">
+                      <BsFillEnvelopeFill size={22} /> 
+                      <p className="mx-2">drink-up@gmail.com</p>
+                    </div>
+                    <div className="d-flex justify-content-start">
+                      <BsFillTelephoneForwardFill size={22} /> 
+                      <p className="mx-2">06 30 93 62 65</p>
+                    </div>
                   </div>
-                  <div className="d-flex justify-content-start">
-                     <BsFillEnvelopeFill size={22} /> 
-                     <p className="mx-2">drink-up@gmail.com</p>
-                  </div>
-                  <div className="d-flex justify-content-start">
-                     <BsFillTelephoneForwardFill size={22} /> 
-                     <p className="mx-2">06 30 93 62 65</p>
-                  </div>
+                  
                 </div>
 
               </div>

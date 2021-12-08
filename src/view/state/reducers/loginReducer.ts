@@ -44,7 +44,7 @@ const loginReducer = (state: LoginState = InitialState , action: Action): LoginS
             isLoading: true
         }
         case ActionType.GET_USER_DATA_SUCCESS:
-            // console.log('ppl')
+        
             let newState: LoginState = {
                 ...state, 
                 isLoading: false,
@@ -68,6 +68,22 @@ const loginReducer = (state: LoginState = InitialState , action: Action): LoginS
             return {
                 ...state,
                 isAuthenticated: action.status
+        }
+
+        case ActionType.CREATE_GARDENER_PLANT_REQUEST:
+            return {
+                ...state,
+                isLoading: true
+        }
+        case ActionType.CREATE_GARDENER_PLANT_SUCCESS:
+            return {
+                ...state,
+                isLoading: false
+        }
+        case ActionType.REMOVE_GARDENER_PLANT:
+            return {
+                ...state,
+                
         }
         default:
             return {
