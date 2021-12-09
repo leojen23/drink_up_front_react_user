@@ -35,6 +35,14 @@ const DashBoard = () => {
     const errorMsg: string | null  = useSelector((state: State ) => state.login.error);
     const gardenerPlants: IGardenerPlant[] = user.gardenerPlants
     const wateringDate: string = Moment().format('DD-MM-YYYY')
+
+    // let PlantsInNeed: IGardenerPlant[] = []
+    // gardenerPlants.map((gardenerPlant) => {
+    //     if(gardenerPlant.wateringStatus == 2 || gardenerPlant.wateringStatus == 3 ){
+    //         PlantsInNeed.push(gardenerPlant);
+    //     }
+    //     return PlantsInNeed;
+    // })
     
     console.log(gardenerPlants)
     useEffect( () =>   {
@@ -100,53 +108,54 @@ const DashBoard = () => {
                     <div className="row">
                         <div className="col-6 d-flex justify-content-evenly align-items-center mb-3">
                             <div className="stat-item d-flex justify-content-center align-items-center">
-                                <div className=" rounded-circle d-flex flex-column bg-dark border-success justify-content-center align-items-center shadow px-2 h-75 w-75">
-                                    <p className="fw-bold text-success">Toutes mes plantes</p>
-                                    <span className="fs-1 fw-bold text-success">{user.numberOfPlants}</span>
+                                <div className=" rounded-circle d-flex flex-column border border-2 border-success justify-content-center align-items-center  px-2 h-75 w-75">
+                                    <p className="fw-bold text-success">Plantes<br/> arrosées</p>
+                                    <span className="fs-1 fw-bold text-success">{user.numberOfUpToDateWaterings}</span>
                                 </div>
                             </div>
                             <div className="stat-item d-flex justify-content-center align-items-center">
-                                <div className=" rounded-circle d-flex flex-column bg-success justify-content-center align-items-center shadow px-2 h-75 w-75">
-                                    <p className="fw-bold text-light">Plantes assoifées</p>
-                                    <span className="fs-1 fw-bold text-light">{user.numberOfPlants}</span>
+                                <div className=" rounded-circle d-flex flex-column border border-2 border-warning justify-content-center align-items-center  px-2 h-75 w-75">
+                                    <p className="fw-bold text-warning">Plantes assoifées</p>
+                                    <span className="fs-1 fw-bold text-warning">{user.numberOfOnDayWaterings}</span>
                                 </div>
                             </div>
                             <div className="stat-item d-flex justify-content-center align-items-center">
-                                <div className=" rounded-circle d-flex flex-column bg-light justify-content-center align-items-center shadow px-2 h-75 w-75">
-                                    <p className="fw-bold text-success">Plantes en péril</p>
-                                    <span className="fs-1 fw-bold text-success">{user.numberOfPlants}</span>
+                                <div className=" rounded-circle d-flex flex-column border border-2 border-danger  justify-content-center align-items-center  px-2 h-75 w-75">
+                                    <p className="fw-bold text-danger">Plantes<br/> en péril</p>
+                                    <span className="fs-1 fw-bold text-danger">{user.numberOfLateWaterings}</span>
                                 </div>
                             </div>
                         </div>
                         <div className="col-6 px-4">
                             <table className="table table-hover">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Plante</th>
-                                    <th scope="col">date d'arrosage</th>
-                                    <th scope="col">Arrosage</th>
-                                   
+                                <thead className="bg-dark">
+                                    <tr className='text-white'>
+                                        <th scope="col">Plante</th>
+                                        <th scope="col">Arrosage prévu</th>
+                                        <th scope="col">Arroser</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr className="table-active">
-                                    <th scope="row">Active</th>
-                                    <td>Column content</td>
-                                    <td>Column content</td>
+                                {gardenerPlants.map((gardenerPlant) => {
                                     
+                                     if(gardenerPlant.wateringStatus == 3) {
+                                         return  <tr key={gardenerPlant.id} className="">
+                                         <th scope="row">{gardenerPlant.nickname}</th>
+                                         <td className=" fw-normal">{gardenerPlant.nextWateringDate}</td>
+                                         <button onClick={() => waterPlant(gardenerPlant, userRepo, wateringDate)} type="button" className="btn btn-error bg-transparent border-0 mt-3" data-toggle="tooltip" data-placement="top" title="Arroser ma plante">
+                                        <BsFillDropletFill size={25} className="text-danger"/>
+                                        </button>
+                                     </tr>
+                                     } else if(gardenerPlant.wateringStatus == 2) {
+                                        return  <tr key={gardenerPlant.id} className="">
+                                        <th scope="row">{gardenerPlant.nickname}</th>
+                                        <td className=" fw-normal">{gardenerPlant.nextWateringDate}</td>
+                                        <button onClick={() => waterPlant(gardenerPlant, userRepo, wateringDate)} type="button" className="btn btn-error bg-transparent border-0 mt-3" data-toggle="tooltip" data-placement="top" title="Arroser ma plante">
+                                       <BsFillDropletFill size={25} className="text-warning"/>
+                                       </button>
                                     </tr>
-                                    <tr>
-                                    <th scope="row">Default</th>
-                                    <td>Column content</td>
-                                    <td>Column content</td>
-                                   
-                                    </tr>
-                                    <tr className="table-success">
-                                    <th scope="row">Primary</th>
-                                    <td>Column content</td>
-                                    <td>Column content</td>
-                                   
-                                    </tr>
+                                    } 
+                                    })}
                                 </tbody>
                             </table>
 
@@ -194,7 +203,7 @@ const DashBoard = () => {
                                             
 
                                                 <div className="card-body bg-dark py-2">
-                                                    <div className="d-flex justify-content-around bg-transparent">
+                                                    <div className="d-flex justify-content-around align-items-center bg-transparent">
                                                         <Link to={'#'} className="btn btn-success  bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Voir la plante">
                                                             <BsFillEyeFill size={25} className="text-light"/>
                                                         </Link>
@@ -206,9 +215,9 @@ const DashBoard = () => {
                                                         </button>
 
                                                         {gardenerPlant.wateringStatus == 1 ? 
-                                                         <button onClick={() => waterPlant(gardenerPlant, userRepo, wateringDate)} type="button" className="btn btn-success bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Je n'ai pas soif !">
+                                                         <div className="bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Je n'ai pas soif !">
                                                          <BsFillDropletFill size={25} className="text-success"/>
-                                                         </button> 
+                                                         </div> 
                                                         : gardenerPlant.wateringStatus == 2 ? 
                                                          <button onClick={() => waterPlant(gardenerPlant, userRepo, wateringDate)} type="button" className="btn btn-error bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Arroser ma plante">
                                                          <BsFillDropletFill size={25} className="text-warning"/>
@@ -216,26 +225,26 @@ const DashBoard = () => {
                                                          : 
                                                          <button onClick={() => waterPlant(gardenerPlant, userRepo, wateringDate)} type="button" className="btn btn-error bg-transparent border-0" data-toggle="tooltip" data-placement="top" title="Arroser ma plante">
                                                          <BsFillDropletFill size={25} className="text-danger"/>
-
                                                          </button> }
-                                                         
-                                                   
                                                     </div>
                                                 </div>
                                                 {gardenerPlant.wateringStatus == 1 ?
-                                                <div className="card-footer d-flex justify-content-start bg-success">
+                                                <div className="card-footer d-flex justify-content-center bg-success">
                                                     <small className="text-white fw-bold">Prochain arrosage le : <em>{gardenerPlant.nextWateringDate}</em> </small>
                                                 </div>
                                                 : gardenerPlant.wateringStatus == 2 ?
-                                                <div className="card-footer d-flex justify-content-start bg-warning">
-                                                    <small className="text-white fw-bold">Jour d'arrosage</small>
+                                                <div className="card-footer d-flex justify-content-center  bg-warning">
+                                                    <small className="text-white fw-bold">C'est mon jour d'arrosage !</small>
                                                 </div>
                                                 :
-                                                <div className="card-footer d-flex justify-content-start bg-danger">
-                                                    <small className="text-white fw-bold">Je me meurs....</small>
-                                                </div>
+                                                <div className="card-footer d-flex justify-content-center bg-danger">
+                                                    {gardenerPlant.numberOfLateDays == 1 ? 
+                                                    <small className="text-white fw-bold">Vous avez {gardenerPlant.numberOfLateDays} jour de retard</small>
+                                                    :
+                                                    <small className="text-white fw-bold">Vous avez {gardenerPlant.numberOfLateDays} jours de retard</small>
+                                                    }
+                                                 </div>
                                                 }
-
 
                                         </div>
                                     </div>

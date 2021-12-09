@@ -17,8 +17,9 @@ export default class GardenerPlant implements IGardenerPlant {
     lastWateringDate: string;
     wateringStatus: number;
     wateringFrequency: number;
+    numberOfLateDays: number;
 
-    constructor(id: number, nickname: string, sunlight: string, size: string, season: string, topography: string,  location: string, frequency: number, image: string, cataloguePlantId: number,  cataloguePlantName: string, nextWateringDate: string,  lastWateringDate: string, wateringStatus: number,  wateringFrequency: number){
+    constructor(id: number, nickname: string, sunlight: string, size: string, season: string, topography: string,  location: string, frequency: number, image: string, cataloguePlantId: number,  cataloguePlantName: string, nextWateringDate: string,  lastWateringDate: string, wateringStatus: number,  wateringFrequency: number, numberOfLateDays: number){
         this.id = id;
         this.nickname = nickname;
         this.sunlight = sunlight;
@@ -34,6 +35,7 @@ export default class GardenerPlant implements IGardenerPlant {
         this.lastWateringDate = lastWateringDate
         this.wateringStatus = wateringStatus
         this.wateringFrequency = wateringFrequency
+        this.numberOfLateDays = numberOfLateDays
     }
 }
 
@@ -53,5 +55,6 @@ export interface IGardenerPlant {
     lastWateringDate: string;
     wateringStatus: number;
     wateringFrequency: number;
+    numberOfLateDays: number;
 }
 

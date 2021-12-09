@@ -10,6 +10,8 @@ import { SiWeightsandbiases } from "react-icons/si";
 import Nav from 'react-bootstrap/Nav'
 import {BrowserRouter as Router, Switch, Route, Redirect, NavLink} from "react-router-dom";
 import { toast } from 'react-toastify';
+import User from '../../domain/entities/user';
+import { FaPagelines } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -18,6 +20,7 @@ const Navbar = () => {
     const userRepo = useInjection(IUserRepository);
     const dispatch = useDispatch();
     const { logOut } = bindActionCreators(actionCreators, dispatch);
+    const user: User = useSelector((state: State) => state.login.user);
     const isAuth: boolean = useSelector((state: State) => state.login.isAuthenticated);
     
 
@@ -60,6 +63,10 @@ const Navbar = () => {
                         </ul>
                         </>}
                         {isAuth && <>
+                        <div className="text-dark bg-light d-flex justify-content-center align-items-center p-2 border rounded-circle m-3">
+                            <span className="text-dark fw-normal fs-3">{user.numberOfPlants}</span>
+                            <span className="text-dark"><FaPagelines size={25} /></span>
+                        </div>
                         <ul className=' navbar-nav ml-auto'>
                             <li className="nav-item">
                                 <button onClick={() => {logOut(userRepo)}}className="btn btn-outline-success">Deconnexion</button>

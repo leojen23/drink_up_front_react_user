@@ -13,6 +13,9 @@ export interface IUser {
     isNotified: boolean;
     gardenerPlants: GardenerPlant[];
     numberOfPlants: number;
+    numberOfOnDayWaterings: number;
+    numberOfLateWaterings: number;
+    numberOfUpToDateWaterings: number;
 }
 export default class User {
 
@@ -23,8 +26,11 @@ export default class User {
     isNotified: boolean;
     gardenerPlants: GardenerPlant[];
     numberOfPlants: number;
+    numberOfOnDayWaterings: number;
+    numberOfLateWaterings: number;
+    numberOfUpToDateWaterings: number;
 
-    constructor(id: number, gender: string, firstname: string, surname: string, isNotified: boolean, gardenerPlants:GardenerPlant[], numberOfPlants: number){
+    constructor(id: number, gender: string, firstname: string, surname: string, isNotified: boolean, gardenerPlants:GardenerPlant[], numberOfPlants: number, numberOfOnDayWaterings: number, numberOfLateWaterings: number, numberOfUpToDateWaterings: number){
         this.id = id;
         this.gender = gender;
         this.firstname = firstname;
@@ -32,6 +38,9 @@ export default class User {
         this.isNotified = isNotified;
         this.gardenerPlants = gardenerPlants;
         this.numberOfPlants = numberOfPlants;
+        this.numberOfOnDayWaterings = numberOfOnDayWaterings;
+        this.numberOfLateWaterings = numberOfLateWaterings;
+        this.numberOfUpToDateWaterings = numberOfUpToDateWaterings;
     }
 }
 
