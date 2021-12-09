@@ -11,7 +11,7 @@ import {reducer as formReducer} from 'redux-form';
 import loginReducer from "./reducers/loginReducer";
 import plantReducer from "./reducers/plantReducer";
 import paginationReducer from "./reducers/paginationReducer";
-
+import gardenerPlantReducer from "./reducers/gardenerPlantReducer";
 
 
 
@@ -19,11 +19,10 @@ export const history = createBrowserHistory();
 const reducers =  combineReducers({
   router: connectRouter(history),
   form: formReducer,
-  // user: userReducer,
   login: loginReducer,
   plant: plantReducer,
-  pagination: paginationReducer
-  /* Add your reducers here */
+  pagination: paginationReducer,
+  gardenerPlant: gardenerPlantReducer
 })
 const store = createStore(
   reducers,

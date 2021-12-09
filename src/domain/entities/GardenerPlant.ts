@@ -1,4 +1,4 @@
-import Plant from "./Plant";
+
 
 export default class GardenerPlant implements IGardenerPlant {
 
@@ -11,10 +11,15 @@ export default class GardenerPlant implements IGardenerPlant {
     location: string;
     frequency: number;
     image: string;
+    cataloguePlantId: number;
+    cataloguePlantName: string;
+    nextWateringDate: string;
+    lastWateringDate: string;
+    wateringStatus: number;
+    wateringFrequency: number;
+    numberOfLateDays: number;
 
-    
-
-    constructor(id: number, nickname: string, sunlight: string, size: string, season: string, topography: string,  location: string, frequency: number, image: string){
+    constructor(id: number, nickname: string, sunlight: string, size: string, season: string, topography: string,  location: string, frequency: number, image: string, cataloguePlantId: number,  cataloguePlantName: string, nextWateringDate: string,  lastWateringDate: string, wateringStatus: number,  wateringFrequency: number, numberOfLateDays: number){
         this.id = id;
         this.nickname = nickname;
         this.sunlight = sunlight;
@@ -24,6 +29,13 @@ export default class GardenerPlant implements IGardenerPlant {
         this.location = location;
         this.frequency = frequency;
         this.image = image;
+        this.cataloguePlantId = cataloguePlantId;
+        this.cataloguePlantName = cataloguePlantName;
+        this.nextWateringDate = nextWateringDate
+        this.lastWateringDate = lastWateringDate
+        this.wateringStatus = wateringStatus
+        this.wateringFrequency = wateringFrequency
+        this.numberOfLateDays = numberOfLateDays
     }
 }
 
@@ -37,5 +49,12 @@ export interface IGardenerPlant {
     location: string;
     frequency: number;
     image: string;
+    cataloguePlantId: number;
+    cataloguePlantName: string;
+    nextWateringDate: string;
+    lastWateringDate: string;
+    wateringStatus: number;
+    wateringFrequency: number;
+    numberOfLateDays: number;
 }
 

@@ -1,5 +1,6 @@
 import { injectable } from "inversify";
 import { registerFormData } from "../../../application/UserRepositoryImpl";
+import { IGardenerPlant } from "../../entities/GardenerPlant";
 import User from "../../entities/user";
 
 
@@ -10,4 +11,5 @@ export default abstract class IUserRepository {
     abstract signOut():void;
     abstract getUserData(id: number | undefined): Promise<User | undefined> ;
     abstract getAuthenticatedUserId(): number | undefined;
+    abstract water (gardenerPlant:IGardenerPlant, userIRI: string, plantIRI: string, wateringDate: string): Promise<void>;
 }

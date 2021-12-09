@@ -1,5 +1,4 @@
 import './App.css';
-import LoginPage from './view/pages/RegisterPage';
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import {history} from './view/state/store';
@@ -16,6 +15,12 @@ import LandingPage from './view/pages/LandingPage';
 import Footer from './view/components/footer';
 import RegisterPage from './view/pages/RegisterPage';
 import CataloguePage from './view/pages/CataloguePage';
+import CreateGardenerPlant from './view/components/gardenerPlant/CreateGardenerPlant';
+import CreateGardenerPlantPage from './view/pages/CreateGardenerPlantPage';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import UpdateGardenerPlantForm from './view/components/gardenerPlant/UpdateGardenerPlantForm';
+import GardenerPlantPage from './view/pages/GardenerPlantPage';
 
 
 
@@ -56,15 +61,15 @@ function App() {
           <Switch>
             <Route path='/' exact component={LandingPage}/>
             <Route path='/catalogue' exact component={CataloguePage}/>
-            <Route path='/register' exact component={RegisterPage}/>
-            {/* <Route path='/login' exact component={LoginPage}/> */}
-            {/* {isAuthenticated} ? {userRoutes}  */}
-            
-            <Route path='/dashboard' render={props => {return isAuthenticated ?  <DashBoard /> : <Redirect to='/' />;}} />
-            <Route path='/users/create' render={props => {return isAuthenticated ?  <Create /> : <Redirect to='/' />;}} />
+            <Route path='/enregistrement' exact component={RegisterPage}/>
+            <Route path='/serre-virtuelle' render={props => {return isAuthenticated ?  <DashBoard /> : <Redirect to='/' />;}} />
+            {/* <Route path='/utilisateur/enregistrement' render={props => {return isAuthenticated ?  <Create /> : <Redirect to='/' />;}} /> */}
+            <Route path='/plantes/ajout' render={() => {return isAuthenticated ?  <CreateGardenerPlantPage /> : <Redirect to='/' />;}} />
+            <Route path='/plantes/modification/:plantId' render={() => {return isAuthenticated ?  <GardenerPlantPage /> : <Redirect to='/' />;}} />
           </Switch>
         </main>
         <Footer/>
+        <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} autoClose={2000}/>
       </ConnectedRouter>
     
   );

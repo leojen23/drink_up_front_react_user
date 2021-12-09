@@ -6,6 +6,7 @@ import IUserRepository from '../../../domain/adapters/repositories/IUserReposito
 import { actionCreators } from '../../state';
 import { renderInputField, renderSelectField, renderSwitchField } from '../formFields';
 import { BsPersonCircle } from "react-icons/bs";
+import { toast } from 'react-toastify';
 
 
     
@@ -18,9 +19,9 @@ import { BsPersonCircle } from "react-icons/bs";
         const submit = async (values) => {
             await userRepo.register({gender: values.gender, firstname: values.firstname, surname: values.surname, email:values.email, password: values.passwordReg, isNotified:values.isNotified});
             logIn({username:values.email, password:values.passwordReg}, userRepo)
+            toast.success('Votre compte a été créé avec succes', { delay: 4000 });
         }
         
-    // console.log(props.onsubmit)
     return(
         <div className='register-form '>
             <h2 className='text-light mb-5 fw-normal '>Créer un compte utilisateur</h2>

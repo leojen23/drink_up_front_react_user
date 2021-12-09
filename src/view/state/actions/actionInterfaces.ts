@@ -47,6 +47,9 @@ interface SetIsAuthenticatedAction {
     type: ActionType.SET_IS_AUTHENTICATED,
     status: boolean,
 };
+interface WaterPlantAction {
+    type: ActionType.WATER_PLANT,
+};
 
 
 // PLANT ACTION INTERFACES -----------------------------------------------/
@@ -69,6 +72,23 @@ interface getPlantsSuccessAction {
 interface getPlantsfailureAction {
     type: ActionType.GET_PLANTS_FAILURE
     error: string
+}
+
+
+// GARDENERPLANT ACTION INTERFACES -----------------------------------------------/
+
+interface createGardenerPlantRequestAction {
+    type: ActionType.CREATE_GARDENER_PLANT_REQUEST
+}
+interface createGardenerPlantSuccessAction {
+    type: ActionType.CREATE_GARDENER_PLANT_SUCCESS
+}
+interface createGardenerPlantFailureAction {
+    type: ActionType.CREATE_GARDENER_PLANT_FAILURE
+    error: string
+}
+interface removeGardenerPlantAction {
+    type: ActionType.REMOVE_GARDENER_PLANT
 }
 
 // PAGINATION ACTION INTERFACES -----------------------------------------------/
@@ -99,5 +119,10 @@ setCurrentPageAction |
 GetAllPlantsAction |
 getUserDataRequestAction |
 getUserDataSuccessAction |
-getUserDataFailureAction 
+getUserDataFailureAction |
+createGardenerPlantRequestAction |
+createGardenerPlantSuccessAction |
+createGardenerPlantFailureAction |
+removeGardenerPlantAction |
+WaterPlantAction
 ;
