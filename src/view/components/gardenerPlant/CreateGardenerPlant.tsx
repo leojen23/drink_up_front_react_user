@@ -112,12 +112,12 @@ const CreateGardenerPlant = ({handleSubmit}) => {
                             <option value='Extérieur' children='Extérieur'></option>
                         </Field>
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
  
                         <div className="md-form">
                           <Field  name="wateringDate" component={renderDateTimePicker1} label ="Renseignez la dernière date d'arrosage" showTime={false}></Field>
                         </div> 
-                    </div>
+                    </div> */}
                     
                     <div className=' d-flex justify-content-center gap-5'>
                         <Link to={'/serre-virtuelle'} className="btn btn-success my-5 rounded">Retour</Link>

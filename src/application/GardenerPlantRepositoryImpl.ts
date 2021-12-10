@@ -1,7 +1,6 @@
 import axios from "axios";
 import { injectable } from "inversify";
 import { toast } from "react-toastify";
-import { IriGenerator } from "../core/utils/IriGenerator";
 import { requestBuilder } from "../core/utils/requestBuilder";
 import IGardenerPlantRepository from "../domain/adapters/repositories/IGardenerPlantRepository";
 
