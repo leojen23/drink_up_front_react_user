@@ -13,8 +13,7 @@ import { FaPagelines } from "react-icons/fa";
 import Button from 'react-bootstrap/Button'
 import ShowPlantModal from '../components/plant/showPlantModal';
 import { Link, useLocation } from 'react-router-dom';
-import IUserRepository from '../../domain/adapters/repositories/IUserRepository';
-import { Hash } from 'crypto';
+
 
 
 const LandingPage = () => { 
@@ -46,7 +45,7 @@ const LandingPage = () => {
               }
             }, 0);
           }
-    }, []);
+    }, [pathname, hash, key]);
   
     return(
         <div id="landing-page" className="landing-page">
@@ -56,11 +55,11 @@ const LandingPage = () => {
                     <div className='col-12'>
                         <h1 className="main-title my-5 text-white ">DRINK UP !</h1>
                         <p className="lead fw-normal mx-5">Vos plantes vous mennent la vie dure ? <br/> 
-                        <span className="fw-bold text-success fs-2"> Drink up !</span> est l'application qu'il vous pour que vos plantes ne manquent plus jamais d'eau. <br/> 
-                        Rejoignez-vous pour <span className="fw-bold text-success fs-2">une expérience unique</span>.... enfin presque !</p>
+                        <span className="fw-bold text-success fs-2"> Drink up !</span> est l'application qu'il vous faut pour que vos plantes ne manquent plus jamais d'eau. <br/> 
+                        Rejoignez-nous pour <span className="fw-bold text-success fs-2">une expérience unique</span>.... enfin presque !</p>
                         <div className="py-5 px-5 d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3 gap-sm-5">
                             <Link to="/catalogue" className="btn fw-bold border-white btn-success rounded ">Découvrir nos plantes</Link>
-                            <Link to="/enregistrement" className="btn fw-bold btn-outline-light rounded">Créer un compte</Link>
+                            <Link to="/enregistrement" className={`btn fw-bold btn-outline-light rounded ${isAuth ? "d-none" : ""}`}>Créer un compte</Link>
                         </div>
                     </div>
                 </div>

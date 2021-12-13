@@ -6,9 +6,7 @@ import IUserRepository from '../../domain/adapters/repositories/IUserRepository'
 import { actionCreators } from '../state';
 import { State } from '../state/store';
 import { SiWeightsandbiases } from "react-icons/si";
-import Nav from 'react-bootstrap/Nav'
 import {BrowserRouter as Router, Switch, Route, Redirect, NavLink, Link} from "react-router-dom";
-import { toast } from 'react-toastify';
 import User from '../../domain/entities/user';
 import { FaPagelines } from "react-icons/fa";
 
@@ -40,17 +38,17 @@ const Navbar = () => {
                         <ul className="navbar-nav me-auto">
                             {isAuth && <>
                             <li className="nav-item">
-                            <Link className="nav-link " to="/serre-virtuelle">Ma serre virtuelle</Link>
+                                <Link className="nav-link " to="/serre-virtuelle">Ma serre virtuelle</Link>
                             </li>
                             </>}
                             <li className="nav-item" aria-current="page">
-                            <Link className="nav-link "  to="/catalogue">Nos Plantes</Link>
+                                <Link className="nav-link "  to="/catalogue">Nos Plantes</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link" to="#">Guide pratique</Link>
+                                <Link className="nav-link" to="#">Guide pratique</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link" to="#">Nous contacter</Link>
+                                <Link className="nav-link" to="#">Nous contacter</Link>
                             </li>
 
                         </ul>

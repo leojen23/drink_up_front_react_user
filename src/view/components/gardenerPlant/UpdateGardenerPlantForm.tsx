@@ -8,6 +8,7 @@ import { renderHiddenField, renderInputField, renderSelectField } from '../formF
 import IPlantRepository from '../../../domain/adapters/repositories/IPlantRepository';
 import IGardenerPlantRepository from '../../../domain/adapters/repositories/IGardenerPlantRepository';
 import { Link } from 'react-router-dom';
+import { FaPagelines } from "react-icons/fa";
 
 
 
@@ -34,8 +35,8 @@ const UpdateGardenerPlantForm = ({handleSubmit}) => {
         updateGardenerPlant(values.gardenerPlantId, {user:userIRI, plant:plantIRI, nickname: values.nickname, sunlight: values.sunlight, size: values.size, season: values.season, topography: values.topography, location: values.location, lastWateringDate: values.lastWateringDate}, gardenerPlantRepo)
     }
     return(
-        <div className='create-gardener-plant-form container d-flex flex-column align-items-center my-5'>
-            <div className="wrapper bg-dark px-5 w-75 ">
+     
+            <div className="create-gardener-plant-form d-flex flex-column align-items-center my-5 col-12" >
 
                 {isLoading ? (
                 <div className ="d-flex justify-content-center align-items-center mt-5">
@@ -45,6 +46,9 @@ const UpdateGardenerPlantForm = ({handleSubmit}) => {
                     </div>
                 </div>
                 ) : (
+                    <>
+                <h2 className='text-light mb-5 fw-normal px-5'>Modifier les informations <br></br> de votre plante</h2>
+                <span className="text-light fw-normal"><FaPagelines size={60} /></span>
                 <form onSubmit={handleSubmit(submit)}>
                     
                     <Field name='gardenerPlantId' component={renderHiddenField} type='hidden' />
@@ -87,9 +91,8 @@ const UpdateGardenerPlantForm = ({handleSubmit}) => {
                         <Link to={'/serre-virtuelle'} className="btn btn-success my-5 rounded">Retour</Link>
                         <button type="submit" className="btn btn-success my-5 rounded">Valider votre saisie</button>
                     </div>
-                </form>)}
+                </form></>)}
             </div>
-        </div>
     );
 }
 

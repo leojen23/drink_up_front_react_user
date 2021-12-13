@@ -24,7 +24,7 @@ import { Link } from 'react-router-dom';
         }
         
     return(
-        <div className='register-form '>
+        <div className='register-form col-12 '>
             <h2 className='text-light mb-5 fw-normal '>Créer un compte utilisateur</h2>
             <span className="text-light fw-normal"><BsPersonCircle size={60} /></span>
             <form onSubmit={handleSubmit(submit)}>
@@ -53,9 +53,9 @@ import { Link } from 'react-router-dom';
                 <div className="form-group">
                     <Field name='isNotified' component={renderSwitchField} label='Je souhaite recevoir les noficiations' type='checkbox' defaultValue={false} />
                 </div>
-                <div className=' d-flex justify-content-center gap-5'>
-                    <Link to={'/'} className="btn btn-success my-5 rounded">Retour</Link>
-                    <button type="submit" className="btn btn-success my-5 rounded">Valider votre saisie</button>
+                <div className=' d-flex flex-column-reverse flex-lg-row justify-content-center align-items-center my-5 gap-3'>
+                    <Link to={'/'} className="btn btn-success  rounded">Retour</Link>
+                    <button type="submit" className="btn btn-success rounded">Valider votre saisie</button>
                 </div>
             </form>
         </div>

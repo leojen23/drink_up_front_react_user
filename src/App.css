@@ -172,6 +172,13 @@
   width: 100%;
 }
 
+.bg-picture {
+  background-image: url("https://bergamotte.imgix.net/z049fzgxm50nzio6q6ri06wzq7op?ixlib=rails-4.2.0&auto=format%2Ccompress&fit=crop&q=65&ar=1%3A1&w=560");
+  background-repeat:no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
 .spinner {
   background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url("https://bergamotte.imgix.net/z049fzgxm50nzio6q6ri06wzq7op?ixlib=rails-4.2.0&auto=format%2Ccompress&fit=crop&q=65&ar=1%3A1&w=560");
   background-repeat:no-repeat;
@@ -179,12 +186,20 @@
   height: 150vh; 
   opacity: 0.9;
 }
+@media screen and (min-width:768px){
+  .form-container {
+    width: 75%;
+  }
+}
+@media screen and (min-width:1200px){
+  .form-container {
+    width: 60%;
+    padding: 3rem;
+  }
+}
 
 
-/* CONFIRMATION ALERT BOX */
-/* div.react-confirm-alert-overlay {
-  opacity: 1!important;
-} */
+
 div.react-confirm-alert-button-group button {
   background-color:#3bbf62!important
 }

@@ -74,7 +74,7 @@ const DashBoard = () => {
                                 <p className="py-4 lead ">Depuis votre espace serre virtuelle, vous pouvez gérer l'arrosage de toutes vos plantes en un click !</p>
                             </div>
                             <div>
-                                <a href="/plantes/ajout" className="btn btn-success rounded">Ajouter une plante</a>
+                                <Link to="/plantes/ajout" className="btn btn-success rounded">Ajouter une plante</Link>
                             </div>
                         </div>
 
@@ -169,7 +169,7 @@ const DashBoard = () => {
                                     <span className="text-success"><BsEmojiWink size={50} /></span>
                                 </div>
                                 <div>
-                                    <a href="/plantes/ajout" className="btn btn-success rounded">Ajouter une plante</a>
+                                    <Link to="/plantes/ajout" className="btn btn-success rounded">Ajouter une plante</Link>
                                 </div>
                             </div>
                         </div>) : 
@@ -230,9 +230,8 @@ const DashBoard = () => {
                                                 :
                                                 <small className="text-white fw-bold">Vous avez {gardenerPlant.numberOfLateDays} jours de retard</small>
                                                 }
-                                                </div>
+                                            </div>
                                             }
-
                                         </div>
                                     </div>
                                 })}

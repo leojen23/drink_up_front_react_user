@@ -2,6 +2,7 @@
 import { BsFillHouseDoorFill } from "react-icons/bs";
 import { BsFillEnvelopeFill } from "react-icons/bs";
 import { BsFillTelephoneForwardFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 
 const Footer = () => {
@@ -21,13 +22,13 @@ const Footer = () => {
                 <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                   <h6 className="text-uppercase fw-bold mb-4"> Accès rapides</h6>
                   <p>
-                    <a href="#!" className="link-light">Nos plantes</a>
+                    <Link to="/catalogue" className="link-light">Nos plantes</Link>
                   </p>
                   <p>
-                    <a href="#!" className="link-light">Nous contacter</a>
+                    <Link to="#!" className="link-light">Nous contacter</Link>
                   </p>
                   <p>
-                    <a href="#!" className="link-light">Politique de confidentialité</a>
+                    <Link to="#!" className="link-light">Politique de confidentialité</Link>
                   </p>
                 </div>
                
@@ -55,8 +56,6 @@ const Footer = () => {
               </div>
             </div>
           
-         
-        
           {/* <!-- Copyright --> */}
           <div className="text-center p-4 bg-dark">
             © 2021 Copyright:

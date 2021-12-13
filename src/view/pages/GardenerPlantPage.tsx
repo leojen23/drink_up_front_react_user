@@ -45,9 +45,11 @@ const GardenerPlantPage = (props) => {
     })[0];
 
     return (
-        <div id="gardener-plant-form-page">
-            <div className="">            
-                {userId ?  <UpdateGardenerPlantForm initialValues={{
+        <div className='bg-picture container-fluid p-4 d-flex justify-content-center' id="gardener-update-page" >
+        <div className='form-container position-relative rounded'>
+         <div className="position-absolute top-0 start-0 bottom-0 end-0 bg-dark opacity-75 rounded"></div>
+             <div className='position-relative d-flex justify-content-center pt-5 '>
+             {userId ?  <UpdateGardenerPlantForm initialValues={{
                     gardenerPlantId:gardenerPlant.id,
                     userId:userId, 
                     nickname: gardenerPlant.nickname, 
@@ -59,16 +61,31 @@ const GardenerPlantPage = (props) => {
                     location: gardenerPlant.location,
                     lastWateringDate: gardenerPlant.lastWateringDate,
                     }} />  : '' }
-            </div>
-        </div>
+             </div> 
+         </div>
+     </div>
+        // <div id="gardener-plant-form-page">
+        //     <div className="">            
+                
+        //     </div>
+        // </div>
     );
     } else {
         return (
-            <div id="gardener-plant-form-page">
-                <div className="">            
-                    {userId ?  <UpdateGardenerPlantForm initialValues={{userId:userId}} />  : '' }
-                </div>
-            </div>
+
+        <div className='bg-transparent container-fluid p-4 d-flex justify-content-center' id="register-page" >
+            <div className='form-container row position-relative container rounded'>
+                <div className=" position-absolute top-0 start-0 bottom-0 end-0 bg-dark opacity-75 rounded"></div>
+                    <div className=' position-relative d-flex justify-content-center pt-5 '>
+                 {userId ?  <UpdateGardenerPlantForm initialValues={{userId:userId}} />  : '' }
+                    </div> 
+             </div>
+        </div>
+            // <div id="gardener-plant-form-page">
+            //     <div className="">            
+                   
+            //     </div>
+            // </div>
         );
 
     }

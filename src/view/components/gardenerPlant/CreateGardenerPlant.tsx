@@ -43,23 +43,25 @@ const CreateGardenerPlant = ({handleSubmit}) => {
     }
 
     return(
-        <div className='create-gardener-plant-form container d-flex flex-column align-items-center my-5'>
-            <div className="wrapper bg-dark px-5 w-75 ">
+        <div className='create-gardener-plant-form container d-flex flex-column align-items-center'>
+            <div className="wrapper ">
 
                 {isLoading ? (
                 <div className ="d-flex justify-content-center align-items-center mt-5">
                     <div className="d-flex flex-column align-items-center py-5">
-
                         <div className="spinner-border text-white mb-5  " role="status"></div>
                         <span className="visually text-light fs-4">Chargement en cours</span>
-
                     </div>
                 </div>
                 ) : (
-                <form onSubmit={handleSubmit(submit)}>
-                     <div className="form-group">
+                    <>
+                    <h2 className='text-light mb-2 fw-normal '>Ajouter une plante à votre serre virtuelle</h2>
+                    <span className="text-light fw-normal"><BsPersonCircle size={60} /></span>
+                    <p className="lead text-light py-5 fw-normal">Avant d'enregistrer votre plante dans votre serre virtuelle, donnez-nous des informations sur son environnement. Elle vous remerciera !</p>
+                    <form onSubmit={handleSubmit(submit)}>
+                        <div className="form-group">
                         <Field name='userId' component={renderHiddenField} type='hidden' />
-                    </div>
+                        </div>
                     <div className="form-group">
                         <Field name='plantId' component={renderSelectField} label="Choisissez une plante de notre catalogue ">
                             <option value='' children="Choisir une option" selected></option>
@@ -123,7 +125,7 @@ const CreateGardenerPlant = ({handleSubmit}) => {
                         <Link to={'/serre-virtuelle'} className="btn btn-success my-5 rounded">Retour</Link>
                         <button type="submit" className="btn btn-success my-5 rounded">Valider votre saisie</button>
                     </div>
-                </form>)}
+                </form></>)}
             </div>
         </div>
     );
