@@ -1,5 +1,21 @@
-
-
+export interface IGardenerPlant {
+    id: number;
+    nickname: string;
+    sunlight: string;
+    size: string;
+    season: string;
+    topography: string;
+    location: string;
+    frequency: number;
+    image: string;
+    cataloguePlantId: number;
+    cataloguePlantName: string;
+    nextWateringDate: string;
+    lastWateringDate: string;
+    wateringStatus: number;
+    wateringFrequency: number;
+    numberOfLateDays: number;
+}
 export default class GardenerPlant implements IGardenerPlant {
 
     id: number;
@@ -39,22 +55,4 @@ export default class GardenerPlant implements IGardenerPlant {
     }
 }
 
-export interface IGardenerPlant {
-    id: number;
-    nickname: string;
-    sunlight: string;
-    size: string;
-    season: string;
-    topography: string;
-    location: string;
-    frequency: number;
-    image: string;
-    cataloguePlantId: number;
-    cataloguePlantName: string;
-    nextWateringDate: string;
-    lastWateringDate: string;
-    wateringStatus: number;
-    wateringFrequency: number;
-    numberOfLateDays: number;
-}
 

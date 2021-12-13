@@ -24,7 +24,11 @@ const GardenerPlantPage = (props) => {
     const { fetchUserData } = bindActionCreators(actionCreators, dispatch);
     const userRepo:IUserRepository = useInjection(IUserRepository);
     const userId:number | undefined = userRepo.getAuthenticatedUserId();
+
+    
     const {plantId}: PlantIdFormParams = useParams();
+
+
     const user: User = useSelector((state: State) => state.login.user);
    
 
@@ -40,9 +44,6 @@ const GardenerPlantPage = (props) => {
         }
     })[0];
 
-    console.log(gardenerPlant.lastWateringDate)
-    // return;
-    
     return (
         <div id="gardener-plant-form-page">
             <div className="">            

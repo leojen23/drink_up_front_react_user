@@ -1,5 +1,5 @@
 import IUserRepository from "../domain/adapters/repositories/IUserRepository";
-import User from "../domain/entities/user";
+import User, { IUser } from "../domain/entities/user";
 import { injectable } from "inversify";
 import axios, { AxiosResponse } from "axios";
 import {requestBuilder} from "../core/utils/requestBuilder";
@@ -85,40 +85,33 @@ export default class UserRepositoryImpl implements IUserRepository {
                 }
         }
         public  getUserData = async (id:number | undefined): Promise<User | undefined> => {
-                console.log('je passe la encore')
 
                 const requestUrl: string = requestBuilder('/api/users/'+ id)
-                // console.log(requestUrl)
-
                 try {
                         const data: any= (await axios.get<any>(requestUrl)).data;
-                        console.log(data);
-                        // console.log(data);
                         const gardenerPlantsData: IGardenerPlant[] = data.gardenerPlants;
-                        // console.log(gardenerPlantsData[0].wateringFrequency)
-                        const gardenerPlants: GardenerPlant [] = gardenerPlantsData.map(function(gardenerPlant){
+                        const gardenerPlants: IGardenerPlant [] = gardenerPlantsData.map(function(gardenerPlant){
                                 
                                 return new GardenerPlant(gardenerPlant.id, gardenerPlant.nickname, gardenerPlant.sunlight, gardenerPlant.size, gardenerPlant.season, gardenerPlant.topography,gardenerPlant.location, gardenerPlant['plant'].frequency, gardenerPlant['plant'].image, gardenerPlant['plant'].id, gardenerPlant['plant'].name, gardenerPlant.nextWateringDate, moment(gardenerPlant.lastWateringDate).format('YYYY-MM-DD'), gardenerPlant.wateringStatus, gardenerPlant.wateringFrequency, gardenerPlant.numberOfLateDays)
                         })
 
-                        console.log(gardenerPlants)
-                        const user: User | undefined = new User(data.id, data.gender, data.firstname, data.surname, data.is_notified, gardenerPlants, data.totalNumberOfGardenerPlants, data.numberOnDayWaterings, data.numberOfLateWaterings, data.numberOfUpToDateWaterings);
-                       
+                        const user: IUser | undefined = new User(data.id, data.gender, data.firstname, data.surname, data.is_notified, gardenerPlants, data.totalNumberOfGardenerPlants, data.numberOnDayWaterings, data.numberOfLateWaterings, data.numberOfUpToDateWaterings);
+
                         return user;
 
                 }catch(error){
-                             
+                   console.log(error)           
                 }
         }
+        
         public water = async (gardenerPlant: IGardenerPlant, userIRI: string, plantIRI:string, wateringDate: string): Promise<void> => {
 
                 const requestUrl = requestBuilder('/api/gardener_plants/' + gardenerPlant.id);
-                // console.log(requestUrl);
                 const gardenerPlantDetails = {user: userIRI, plant:plantIRI , nickname: gardenerPlant.nickname, sunlight: gardenerPlant.sunlight, size: gardenerPlant.size, season:gardenerPlant.season, topography:gardenerPlant.topography, location: gardenerPlant.location, lastWateringDate: wateringDate };
         
                 try {
                         const data: any = (await axios.put(requestUrl, gardenerPlantDetails)).data
-                        console.log(data)
+                        
                 } catch (error) {
                     toast.error('Une erreur est survenue lors de la modification de votre plante', { delay: 2000 })
                      console.log(error)

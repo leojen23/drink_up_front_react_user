@@ -106,7 +106,6 @@ export const waterPlant = (gardenerPlant: IGardenerPlant, userRepo: IUserReposit
         await userRepo.water(gardenerPlant, userIRI, plantIRI, wateringDate)
         const user: IUser | undefined = await userRepo.getUserData(userId);
         dispatch(getUserDataSuccess(user));
-        dispatch(push('/serre-virtuelle'));
         toast.success('Votre plante a été arrosée et vous remercie !', { delay: 1000 })
     }
 }
@@ -118,7 +117,6 @@ export const fetchPlants = (repo: IPlantRepository) => {
         dispatch(getPlantsRequest())
         const plants: IPlant[] | undefined = await  repo.getAllPlants();
         dispatch(getPlantsSuccess(plants));
-        // dispatch(setPlants(plants));
     }
 }
 export const getPlantsRequest = () =>  ({
@@ -139,7 +137,6 @@ export const getPlantsFailure = (error: string) =>  ({
 // GARDENER PLANTS ACTIONS -------------------------------------------------------------------
 export const createGardenerPlant = ({user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate}: registerGardenerPlantFormData, repo: IGardenerPlantRepository) => {
     return async (dispatch: Dispatch) =>  {
-        
         await repo.registerGardenerPlant({user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate})
        
         dispatch(push('/serre-virtuelle'));
@@ -151,8 +148,6 @@ export const updateGardenerPlant = (gardenerPlantId: number, {user, plant, nickn
     return async (dispatch: Dispatch) => {
 
         await repo.updateGardenerPlant(gardenerPlantId, {user:user, plant:plant, nickname: nickname, sunlight: sunlight, size: size, season: season, topography: topography, location: location, lastWateringDate: lastWateringDate})
-        // console.log('updategardenerplant')
-        // console.log('ppl')
         dispatch(push('/serre-virtuelle'));
         toast.success('Votre plante a été modifiée avec succes', { delay: 1000 })
     }

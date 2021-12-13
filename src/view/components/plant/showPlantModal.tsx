@@ -29,10 +29,9 @@ function ShowPlantModal(props) {
             <Modal.Body>
                 <div className="row">
                     <div className="col-6">
-                        <img src={plant.image} className="img-fluid h-100" alt="..." />        
+                        <img src={plant.image} className="img-fluid h-100 d-none d-xl-block" alt={plant.name} />        
                     </div>
-                    <div className="col-6 d-flex flex-column justify-content-start  fs-6">
-    
+                    <div className="col-12 col-sm-6 d-flex flex-column justify-content-start fs-6">
                         <div className="d-flex justify-content-start gap-3">
                             <span className="text-success"><BsFillHandThumbsUpFill size={20}/></span>
                             <div>

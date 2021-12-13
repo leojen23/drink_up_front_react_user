@@ -10,7 +10,6 @@ import { bindActionCreators } from 'redux';
 import { actionCreators } from './view/state';
 import { State } from './view/state/store';
 import DashBoard from './view/pages/DashBoard';
-import Create from './view/components/User/create';
 import LandingPage from './view/pages/LandingPage';
 import Footer from './view/components/footer';
 import RegisterPage from './view/pages/RegisterPage';
@@ -50,13 +49,13 @@ function App() {
   // console.log((state));
   setIsAuthenticated(authenticationStatus);
   const isAuthenticated: boolean = useSelector((state: State) => state.login.isAuthenticated);
-  console.log('Etat du status de connexion dans state => ' + isAuthenticated)
+  
 
 
   return (  
     
       <ConnectedRouter history= {history}>
-        <Navbar/>
+        <Navbar />
         <main className="App">
           <Switch>
             <Route path='/' exact component={LandingPage}/>

@@ -1,10 +1,5 @@
 import GardenerPlant from "./GardenerPlant";
 
-
-
-
-
-
 export interface IUser {
     id: number;
     gender: string;

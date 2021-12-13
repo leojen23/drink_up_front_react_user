@@ -30,8 +30,8 @@ const store = createStore(
 );
 
     
-    export default store;
-    export type State = ReturnType<typeof reducers>;
+export default store;
+export type State = ReturnType<typeof reducers>;
     // Infer the `RootState` and `AppDispatch` types from the store itself
 //     export type RootState = ReturnType<typeof store.getState>
 // // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}

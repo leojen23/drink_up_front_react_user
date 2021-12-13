@@ -27,7 +27,6 @@ export default class GardenerPlantRepositoryImpl implements IGardenerPlantReposi
 
     public updateGardenerPlant = async (gardenerPlantId:number, {user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate}:updateGardenerPlantFormData): Promise<void> => {
 
-        console.log('je suis dans le repo');
         const requestUrl = requestBuilder('/api/gardener_plants/' + gardenerPlantId);
         const gardenerPlantDetails: updateGardenerPlantFormData ={user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate};
 

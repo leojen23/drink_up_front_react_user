@@ -35,7 +35,7 @@ const Footer = () => {
                   <h6 className="text-uppercase fw-bold mb-4">
                     Informations de contact
                   </h6>
-                  <div className="d-flex flex-column align-items-center">
+                  <div className="d-flex flex-column align-items-center align-items-md-start">
                     <div className="d-flex justify-content-start">
                       <BsFillHouseDoorFill size={22} /> 
                       <p className="mx-2">69 Route de la verdure</p>

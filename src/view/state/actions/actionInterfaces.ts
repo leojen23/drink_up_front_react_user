@@ -7,24 +7,24 @@ import { ActionType } from "./actionType";
 
 
 interface LoginRequestAction {
-        type: ActionType.LOGIN_REQUEST,
+    type: ActionType.LOGIN_REQUEST,
         
 }
 interface LoginSuccessAction {
-        type: ActionType.LOGIN_SUCCESS,
-        user: any
+    type: ActionType.LOGIN_SUCCESS,
+    user: any
 }
 interface LoginFailedAction {
-        type: ActionType.LOGIN_FAILED,
-        error: string
+    type: ActionType.LOGIN_FAILED,
+    error: string
 }
 interface getUserDataRequestAction {
-        type: ActionType.GET_USER_DATA_REQUEST,
+    type: ActionType.GET_USER_DATA_REQUEST,
         
 }
 interface getUserDataSuccessAction {
-        type: ActionType.GET_USER_DATA_SUCCESS,
-        user: User
+    type: ActionType.GET_USER_DATA_SUCCESS,
+    user: User
 }
 interface getUserDataFailureAction {
         type: ActionType.GET_USER_DATA_FAILURE,

@@ -58,7 +58,7 @@ const Navbar = () => {
                         {!isAuth && <>
                         <ul className=' navbar-nav ml-auto'>
                             <li className="nav-item">
-                                <a href="#presentation-login" onClick={() => {}} className="btn btn-success rounded">Connexion</a>
+                                <a href="#presentation-login" onClick={() => {}} className="btn btn-success rounded w-auto">Connexion</a>
                             </li>
                         </ul>
                         </>}
@@ -67,9 +67,9 @@ const Navbar = () => {
                             <span className="text-dark fw-normal fs-3">{user.numberOfPlants}</span>
                             <span className="text-dark"><FaPagelines size={25} /></span>
                         </div>
-                        <ul className=' navbar-nav ml-auto'>
+                        <ul className=' navbar-nav ml-auto '>
                             <li className="nav-item">
-                                <button onClick={() => {logOut(userRepo)}}className="btn btn-outline-success">Deconnexion</button>
+                                <button onClick={() => {logOut(userRepo)}}className="btn btn-outline-success rounded w-auto">Deconnexion</button>
                             </li>
                         </ul>
                         </>}
