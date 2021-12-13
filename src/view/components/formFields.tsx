@@ -6,7 +6,7 @@ export const renderInputField = ({input, type, label, meta: {touched, error} }:a
     <div className="form-group">
         <div className="form-group text-light">
             <label htmlFor={input.name} className="form-label mt-4 mr-4 float-start">{label}</label>
-            <input {...input} type={ type } id={input.name} className="form-control rounded" placeholder={label}/>
+            <input {...input} required type={ type } id={input.name} className="form-control rounded" placeholder={label}/>
             {touched && error &&
             <small className='error'>{error}</small>}
         </div>

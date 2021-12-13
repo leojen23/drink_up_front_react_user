@@ -37,13 +37,11 @@ export default class UserRepositoryImpl implements IUserRepository {
             try {
                     const data: any = (await axios.post<AxiosResponse>(requestUrl, credentials)).data
                     const token: string = data.token
-                    
-                    
             this.setAxiosToken(token);
             this.storeTokenInLocalStorage(token);
 
             } catch (error: any) {
-                toast.error('une erreur est survenue', { delay: 2000 })
+                toast.error('une erreur est survenue, vérifier vos identifiants de connexion', { delay: 2000 })
                 console.log(error)
             }
         }

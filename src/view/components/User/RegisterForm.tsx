@@ -7,6 +7,7 @@ import { actionCreators } from '../../state';
 import { renderInputField, renderSelectField, renderSwitchField } from '../formFields';
 import { BsPersonCircle } from "react-icons/bs";
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 
     
@@ -52,7 +53,10 @@ import { toast } from 'react-toastify';
                 <div className="form-group">
                     <Field name='isNotified' component={renderSwitchField} label='Je souhaite recevoir les noficiations' type='checkbox' defaultValue={false} />
                 </div>
-                <button type="submit" className="btn btn-success my-5 rounded">Connexion</button>
+                <div className=' d-flex justify-content-center gap-5'>
+                    <Link to={'/'} className="btn btn-success my-5 rounded">Retour</Link>
+                    <button type="submit" className="btn btn-success my-5 rounded">Valider votre saisie</button>
+                </div>
             </form>
         </div>
     );

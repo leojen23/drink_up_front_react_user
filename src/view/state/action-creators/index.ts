@@ -24,8 +24,7 @@ export const logIn = ({username, password}, repo: IUserRepository) => {
     return async (dispatch: Dispatch) =>  {
         dispatch(loginRequest({username, password}));
         await repo.signIn(username, password);
-        
-        
+
         const userId: number | undefined = repo.getAuthenticatedUserId();
         const user: User|undefined = await repo.getUserData(userId);
         
@@ -137,10 +136,9 @@ export const getPlantsFailure = (error: string) =>  ({
 // GARDENER PLANTS ACTIONS -------------------------------------------------------------------
 export const createGardenerPlant = ({user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate}: registerGardenerPlantFormData, repo: IGardenerPlantRepository) => {
     return async (dispatch: Dispatch) =>  {
+
         await repo.registerGardenerPlant({user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate})
-       
         dispatch(push('/serre-virtuelle'));
-        toast.success('Votre plante a été créée avec succes', { delay: 1000 })
     }
 }
 export const updateGardenerPlant = (gardenerPlantId: number, {user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate}: updateGardenerPlantFormData, repo: IGardenerPlantRepository) => {
@@ -149,19 +147,10 @@ export const updateGardenerPlant = (gardenerPlantId: number, {user, plant, nickn
 
         await repo.updateGardenerPlant(gardenerPlantId, {user:user, plant:plant, nickname: nickname, sunlight: sunlight, size: size, season: season, topography: topography, location: location, lastWateringDate: lastWateringDate})
         dispatch(push('/serre-virtuelle'));
-        toast.success('Votre plante a été modifiée avec succes', { delay: 1000 })
+        
     }
 }
-// export const createGardenerPlantRequest = () =>  ({
-//     type: ActionType.CREATE_GARDENER_PLANT_REQUEST,
-// })
-// export const createGardenerPlantSuccess = () =>  ({
-//     type: ActionType.CREATE_GARDENER_PLANT_SUCCESS
-// })
-// export const createGardenerPlantFailure = (error: string) =>  ({
-//     type: ActionType.CREATE_GARDENER_PLANT_FAILURE,
-//     error: error
-// })
+
 
 export const removeGardenerPlant = (gardernerPlantId: number, repo: IGardenerPlantRepository, userId) => {
     return async (dispatch: Dispatch) =>  {
@@ -169,7 +158,6 @@ export const removeGardenerPlant = (gardernerPlantId: number, repo: IGardenerPla
         const userRepo = new UserRepositoryImpl();
         const user: IUser | undefined = await userRepo.getUserData(userId);
         dispatch(getUserDataSuccess(user));
-        toast.success('Votre plante a été supprimée avec succes', { delay: 2000 })
     }
 }
 

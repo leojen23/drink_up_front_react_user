@@ -8,18 +8,17 @@ import IGardenerPlantRepository from "../domain/adapters/repositories/IGardenerP
 @injectable()
 export default class GardenerPlantRepositoryImpl implements IGardenerPlantRepository {
 
-
     public  registerGardenerPlant = async ({user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate}: registerGardenerPlantFormData): Promise<void> => {
 
         const requestUrl: string = requestBuilder('/api/gardener_plants')
         const gardenerPlantDetails:registerGardenerPlantFormData = {user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate};
         console.log(gardenerPlantDetails);
         
-        
         try {
             const data: any = (await axios.post(requestUrl, gardenerPlantDetails)).data
+            toast.success('Votre plante a été créée avec succes', { delay: 1500 })
         } catch (error) {
-            toast.error('Une erreur est survenue lors de la création de votre plante', { delay: 2000 })
+            toast.error('Une erreur est survenue lors de la création de votre plante', { delay: 1500 })
             console.log(error)
         }
 
@@ -29,25 +28,26 @@ export default class GardenerPlantRepositoryImpl implements IGardenerPlantReposi
 
         const requestUrl = requestBuilder('/api/gardener_plants/' + gardenerPlantId);
         const gardenerPlantDetails: updateGardenerPlantFormData ={user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate};
-
-        console.log(gardenerPlantDetails)
     
         try {
         const data: any = (await axios.put(requestUrl, gardenerPlantDetails)).data
+        toast.success('Votre plante a été modifiée avec succes', { delay: 1500 })
         } catch (error) {
             toast.error('Une erreur est survenue lors de la modification de votre plante', { delay: 2000 })
-             console.log(error)
+            console.log(error)
         }
     }
 
     public deleteGardenerPlant = async (id: number):Promise<void> => {
 
         const requestUrl = requestBuilder('/api/gardener_plants/' + id);
+
         try {
         const data: any = (await axios.delete(requestUrl)).data
-        toast.success('Votre plante a été supprimée avec succes', { delay: 4000 })
+        toast.success('Votre plante a été supprimée avec succes', { delay: 1500 })
+
         } catch (error) {
-            toast.error('Une erreur est survenue lors de la suppression de votre plante', { delay: 2000 })
+            toast.error('Une erreur est survenue lors de la suppression de votre plante', { delay: 1500 })
              console.log(error)
         }
     }  

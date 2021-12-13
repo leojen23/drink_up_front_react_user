@@ -12,8 +12,9 @@ import { BsPersonCircle, BsFlower2, BsClipboardData } from "react-icons/bs";
 import { FaPagelines } from "react-icons/fa";
 import Button from 'react-bootstrap/Button'
 import ShowPlantModal from '../components/plant/showPlantModal';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import IUserRepository from '../../domain/adapters/repositories/IUserRepository';
+import { Hash } from 'crypto';
 
 
 const LandingPage = () => { 
@@ -27,9 +28,24 @@ const LandingPage = () => {
     
     const plantRepo = useInjection(IPlantRepository);
     const [modalShow, setModalShow] = useState(false);
+    const {pathname, hash, key} = useLocation()
+    console.log(hash);
     
     useEffect( () =>   {
         fetchPlants(plantRepo);
+        if (hash === '') {
+            window.scrollTo(0, 0);
+          }
+          // else scroll to id
+          else {
+            setTimeout(() => {
+              const id:string = hash.replace('#', '');
+              const element = document.getElementById(id);
+              if (element) {
+                element.scrollIntoView();
+              }
+            }, 0);
+          }
     }, []);
   
     return(
