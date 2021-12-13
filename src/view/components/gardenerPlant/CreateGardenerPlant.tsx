@@ -49,7 +49,7 @@ const CreateGardenerPlant = ({handleSubmit}) => {
                 {isLoading ? (
                 <div className ="d-flex justify-content-center align-items-center mt-5">
                     <div className="d-flex flex-column align-items-center py-5">
-                        <div className="spinner-border text-white mb-5  " role="status"></div>
+                        <div className="spinner-border text-white mb-5" role="status"></div>
                         <span className="visually text-light fs-4">Chargement en cours</span>
                     </div>
                 </div>
