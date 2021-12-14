@@ -36,7 +36,7 @@ function App() {
 
   //1 - Vérfiie le statut de connexion de l'utilisateur dans le state à l'ouverture de l'application
   const authenticationStatus: boolean = serviceRepo.isAuthenticated();
-  console.log('authentifié au lancement application => ' + authenticationStatus)
+  // console.log('authentifié au lancement application => ' + authenticationStatus)
 
    //2 - Vérfie si un token exite dans le local storage du  navigateur et s'il est valide !
   serviceRepo.setup();
@@ -62,7 +62,6 @@ function App() {
             <Route path='/catalogue' exact component={CataloguePage}/>
             <Route path='/enregistrement' exact component={RegisterPage}/>
             <Route path='/serre-virtuelle' render={props => {return isAuthenticated ?  <DashBoard /> : <Redirect to='/' />;}} />
-            {/* <Route path='/utilisateur/enregistrement' render={props => {return isAuthenticated ?  <Create /> : <Redirect to='/' />;}} /> */}
             <Route path='/plantes/ajout' render={() => {return isAuthenticated ?  <CreateGardenerPlantPage /> : <Redirect to='/' />;}} />
             <Route path='/plantes/modification/:plantId' render={() => {return isAuthenticated ?  <GardenerPlantPage /> : <Redirect to='/' />;}} />
           </Switch>
