@@ -28,13 +28,12 @@ const GardenerPlantPage = (props) => {
     
     const {plantId}: PlantIdFormParams = useParams();
 
-
     const user: User = useSelector((state: State) => state.login.user);
    
 
-    useEffect( () =>   {
-        fetchUserData(userId, userRepo)
-    }, []);
+    // useEffect( () =>   {
+    //     fetchUserData(userId, userRepo)
+    // }, []);
     
 
     if(Object.keys(user).length){

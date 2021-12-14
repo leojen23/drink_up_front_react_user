@@ -33,7 +33,7 @@ export default class UserRepositoryImpl implements IUserRepository {
         public async signIn (username: string, password: string){
             
             const requestUrl: string = requestBuilder("/api/login_check");
-            const credentials: any = {username, password};
+            const credentials: userCredentials = {username, password};
             try {
                     const data: any = (await axios.post<AxiosResponse>(requestUrl, credentials)).data
                     const token: string = data.token
@@ -125,6 +125,9 @@ export interface registerFormData {
         firstname: string,
         surname: string,
         isNotified: boolean
-        }
+}
 
-      
+export interface userCredentials {
+        username: string
+        password: string
+}
