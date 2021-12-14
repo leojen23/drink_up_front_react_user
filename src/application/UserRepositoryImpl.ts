@@ -11,9 +11,12 @@ import moment from "moment";
 @injectable()
 export default class UserRepositoryImpl implements IUserRepository {
 
-        private protocole: string = 'http://';
-        private domain: string = 'drink-up-apiplatform.test:8080';
-        private url: string = this.protocole + this.domain;
+        // const requestUrl = requestBuilder('/api/gardener_plants/' + gardenerPlant.id);
+
+        // private protocole: string = 'http://';
+        // private domain: string = 'drink-up-apiplatform.test:8080';
+        // private url: string = this.protocole + this.domain;
+        // const requestUrl:string = requestBuilder('/api/users');
 
         public getAuthenticatedUserId = () :number | undefined =>  {
                 const token: string | null = window.localStorage.getItem('authToken');
@@ -48,12 +51,13 @@ export default class UserRepositoryImpl implements IUserRepository {
 
         public  register = async ({email, password, gender, firstname, surname, isNotified}: registerFormData): Promise<void> => {
              
-                const apiEndPoint: string = '/api/users'  
+                // const apiEndPoint: string = '/api/users'  
+                const requestUrl:string = requestBuilder('/api/users');
                 const userDetails:  registerFormData = {email, password, gender, firstname, surname, isNotified  };
                 
                 try {
                         // console.log('ppl')
-                    const data: any = (await axios.post(this.url + apiEndPoint, userDetails)).data
+                    const data: any = (await axios.post(requestUrl, userDetails)).data
                     toast.success('Votre compte a été créé avec succès !', { delay: 2000 })
                 } catch (error) {
                         toast.error("Une erreur s'est produite lors de la création de votre compte !", { delay: 2000 })
