@@ -40,8 +40,9 @@ export default class UserRepositoryImpl implements IUserRepository {
             const requestUrl: string = requestBuilder("/api/login_check");
             const credentials: userCredentials = {username, password};
             try {
-                    const data: any = (await axios.post<AxiosResponse>(requestUrl, credentials)).data
-                    const token: string = data.token
+                axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
+                const data: any = (await axios.post<AxiosResponse>(requestUrl, credentials)).data
+                const token: string = data.token
             this.setAxiosToken(token);
             this.storeTokenInLocalStorage(token);
 
