@@ -123,7 +123,7 @@ const CreateGardenerPlant = ({handleSubmit}) => {
                     
                     <div className=' d-flex justify-content-center gap-5'>
                         <Link to={'/serre-virtuelle'} className="btn btn-success my-5 rounded">Retour</Link>
-                        <button type="submit" className="btn btn-success my-5 rounded">Valider votre saisie</button>
+                        <button type="submit" className="btn btn-success my-5 rounded">Je crée ma plante</button>
                     </div>
                 </form></>)}
             </div>

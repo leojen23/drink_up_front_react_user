@@ -8,10 +8,6 @@ corsHeadersSetter(axios)
 @injectable()
 export default class ServiceRepositoryImpl implements IServiceRepository {
 
-    // private protocole: string = 'http://';
-    // private domain: string = 'drink-up-apiplatform.test:8080';
-    // private url: string = this.protocole + this.domain;
-
     public setup(){
 
         //Vérification existence et validité du token

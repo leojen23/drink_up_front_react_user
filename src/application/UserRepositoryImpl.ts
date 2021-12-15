@@ -7,18 +7,10 @@ import GardenerPlant, { IGardenerPlant } from "../domain/entities/GardenerPlant"
 import { toast } from "react-toastify";
 import { isConstructorDeclaration } from "typescript";
 import moment from "moment";
-import { corsHeadersSetter } from "../core/utils/corsHeadersSetter";
 
-corsHeadersSetter(axios)
 @injectable()
 export default class UserRepositoryImpl implements IUserRepository {
 
-        // const requestUrl = requestBuilder('/api/gardener_plants/' + gardenerPlant.id);
-
-        // private protocole: string = 'http://';
-        // private domain: string = 'drink-up-apiplatform.test:8080';
-        // private url: string = this.protocole + this.domain;
-        // const requestUrl:string = requestBuilder('/api/users');
 
         public getAuthenticatedUserId = () :number | undefined =>  {
                 const token: string | null = window.localStorage.getItem('authToken');
@@ -40,7 +32,6 @@ export default class UserRepositoryImpl implements IUserRepository {
             const requestUrl: string = requestBuilder("/api/login_check");
             const credentials: userCredentials = {username, password};
             try {
-                axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
                 const data: any = (await axios.post<AxiosResponse>(requestUrl, credentials)).data
                 const token: string = data.token
             this.setAxiosToken(token);

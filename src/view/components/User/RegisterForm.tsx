@@ -55,7 +55,7 @@ import { Link } from 'react-router-dom';
                 </div>
                 <div className=' d-flex flex-column-reverse flex-lg-row justify-content-center align-items-center my-5 gap-3'>
                     <Link to={'/'} className="btn btn-success  rounded">Retour</Link>
-                    <button type="submit" className="btn btn-success rounded">Valider votre saisie</button>
+                    <button type="submit" className="btn btn-success rounded">Je crée mon compte</button>
                 </div>
             </form>
         </div>
