@@ -6,7 +6,7 @@ import { requestBuilder } from "../core/utils/requestBuilder";
 import { corsHeadersSetter } from "../core/utils/corsHeadersSetter";
 
 
-corsHeadersSetter(axios)
+
 @injectable()
 export default class PlantRepositoryImpl implements IPlantRepository {
 
@@ -15,6 +15,7 @@ export default class PlantRepositoryImpl implements IPlantRepository {
         const requestUrl: string = requestBuilder("/api/plants")
 
         try {
+            corsHeadersSetter(axios)
             const data: any = (await axios.get<AxiosResponse>(requestUrl)).data
             // console.log(data['hydra:member'])
             const plantsData: Plant[] = data['hydra:member']
