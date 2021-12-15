@@ -2,8 +2,9 @@ import { injectable } from "inversify";
 import axios from "axios";
 import jwtDecode from 'jwt-decode';
 import IServiceRepository from "../domain/adapters/repositories/IServiceRepository";
+import { corsHeadersSetter } from "../core/utils/corsHeadersSetter";
 
-
+corsHeadersSetter(axios)
 @injectable()
 export default class ServiceRepositoryImpl implements IServiceRepository {
 

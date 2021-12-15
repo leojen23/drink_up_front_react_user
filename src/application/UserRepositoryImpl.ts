@@ -7,7 +7,9 @@ import GardenerPlant, { IGardenerPlant } from "../domain/entities/GardenerPlant"
 import { toast } from "react-toastify";
 import { isConstructorDeclaration } from "typescript";
 import moment from "moment";
+import { corsHeadersSetter } from "../core/utils/corsHeadersSetter";
 
+corsHeadersSetter(axios)
 @injectable()
 export default class UserRepositoryImpl implements IUserRepository {
 

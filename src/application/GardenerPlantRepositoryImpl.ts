@@ -1,13 +1,15 @@
 import axios from "axios";
 import { injectable } from "inversify";
 import { toast } from "react-toastify";
+import { corsHeadersSetter } from "../core/utils/corsHeadersSetter";
 import { requestBuilder } from "../core/utils/requestBuilder";
 import IGardenerPlantRepository from "../domain/adapters/repositories/IGardenerPlantRepository";
 
-
+corsHeadersSetter(axios);
 @injectable()
 export default class GardenerPlantRepositoryImpl implements IGardenerPlantRepository {
 
+    
     public  registerGardenerPlant = async ({user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate}: registerGardenerPlantFormData): Promise<void> => {
 
         const requestUrl: string = requestBuilder('/api/gardener_plants')
@@ -15,6 +17,8 @@ export default class GardenerPlantRepositoryImpl implements IGardenerPlantReposi
         console.log(gardenerPlantDetails);
         
         try {
+            // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+            // corsHeadersSeter(axios)
             const data: any = (await axios.post(requestUrl, gardenerPlantDetails)).data
             toast.success('Votre plante a été créée avec succes', { delay: 1500 })
         } catch (error) {
@@ -30,6 +34,7 @@ export default class GardenerPlantRepositoryImpl implements IGardenerPlantReposi
         const gardenerPlantDetails: updateGardenerPlantFormData ={user, plant, nickname, sunlight, size, season, topography, location, lastWateringDate};
     
         try {
+        // corsHeadersSeter(axios)
         const data: any = (await axios.put(requestUrl, gardenerPlantDetails)).data
         toast.success('Votre plante a été modifiée avec succes', { delay: 1500 })
         } catch (error) {
@@ -43,6 +48,7 @@ export default class GardenerPlantRepositoryImpl implements IGardenerPlantReposi
         const requestUrl = requestBuilder('/api/gardener_plants/' + id);
 
         try {
+        // corsHeadersSeter(axios)
         const data: any = (await axios.delete(requestUrl)).data
         toast.success('Votre plante a été supprimée avec succes', { delay: 1500 })
 

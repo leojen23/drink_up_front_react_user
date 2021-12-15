@@ -3,9 +3,10 @@ import axios, { AxiosResponse } from "axios";
 import IPlantRepository from "../domain/adapters/repositories/IPlantRepository";
 import Plant from "../domain/entities/Plant";
 import { requestBuilder } from "../core/utils/requestBuilder";
+import { corsHeadersSetter } from "../core/utils/corsHeadersSetter";
 
 
-
+corsHeadersSetter(axios)
 @injectable()
 export default class PlantRepositoryImpl implements IPlantRepository {
 
