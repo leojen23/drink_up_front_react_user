@@ -34,8 +34,8 @@ const CreateGardenerPlant = ({handleSubmit}) => {
 
     const submit = async (values) => {
 
-        const userIRI = "/api/users/" + values.userId;
-        const plantIRI = "/api/plants/" + values.plantId;
+        const userIRI:string = "/api/users/" + values.userId;
+        const plantIRI:string = "/api/plants/" + values.plantId;
         const wateringDate: string = Moment().format('YYYY-MM-DD')
         console.log(wateringDate);
     

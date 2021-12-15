@@ -96,7 +96,7 @@ export default class UserRepositoryImpl implements IUserRepository {
                                 
                                 return new GardenerPlant(gardenerPlant.id, gardenerPlant.nickname, gardenerPlant.sunlight, gardenerPlant.size, gardenerPlant.season, gardenerPlant.topography,gardenerPlant.location, gardenerPlant['plant'].frequency, gardenerPlant['plant'].image, gardenerPlant['plant'].id, gardenerPlant['plant'].name, gardenerPlant.nextWateringDate, moment(gardenerPlant.lastWateringDate).format('YYYY-MM-DD'), gardenerPlant.wateringStatus, gardenerPlant.wateringFrequency, gardenerPlant.numberOfLateDays)
                         })
-
+console.log(gardenerPlants);
                         const user: IUser | undefined = new User(data.id, data.gender, data.firstname, data.surname, data.is_notified, gardenerPlants, data.totalNumberOfGardenerPlants, data.numberOnDayWaterings, data.numberOfLateWaterings, data.numberOfUpToDateWaterings);
 
                         return user;
